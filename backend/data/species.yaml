@@ -1,0 +1,171 @@
+# LeafLens species catalog
+#
+# This is the curated knowledge base that backs the API responses.
+# Add or edit entries here and re-run the seeder to update the database.
+#
+# Each entry has the following shape:
+#   - scientific_name: required, unique
+#     common_name:     required
+#     family:          optional
+#     origin:          optional
+#     description:     optional, one-paragraph
+#     image_url:       optional, public URL
+#     care:
+#       watering_days_min:   int
+#       watering_days_max:   int
+#       light_level:         "low" | "medium-indirect" | "bright-indirect" | "direct"
+#       temperature_min_c:   int
+#       temperature_max_c:   int
+#       humidity_pct:        e.g. "40-60"
+#       fertilizer_schedule: short natural-language description
+#     toxicity:
+#       - animal: "cat" | "dog"
+#         level:  "safe" | "mild" | "toxic"
+#         notes:  optional
+#
+# The full 47-species catalog is generated automatically by
+# `scripts/build_species_catalog.py` after the dataset is downloaded
+# (it uses the class folder names as a starting list). The entries below
+# are hand-curated examples and the seeder is idempotent, so the auto-built
+# entries will not overwrite them once filled in.
+
+- scientific_name: Aloe vera
+  common_name: Aloe Vera
+  family: Asphodelaceae
+  origin: Arabian Peninsula
+  description: >
+    Succulent species widely grown for its medicinal leaves. Stores water
+    in thick, fleshy leaves that allow it to survive long dry periods.
+  care:
+    watering_days_min: 14
+    watering_days_max: 21
+    light_level: bright-indirect
+    temperature_min_c: 13
+    temperature_max_c: 27
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2 months in spring and summer
+  toxicity:
+    - animal: cat
+      level: toxic
+      notes: saponins cause vomiting and diarrhea
+    - animal: dog
+      level: toxic
+      notes: saponins cause vomiting and diarrhea
+
+- scientific_name: Epipremnum aureum
+  common_name: Golden Pothos
+  family: Araceae
+  origin: Solomon Islands
+  description: >
+    Trailing vine with heart-shaped, often variegated leaves. One of the
+    easiest houseplants to grow and tolerates low light.
+  care:
+    watering_days_min: 7
+    watering_days_max: 10
+    light_level: bright-indirect
+    temperature_min_c: 18
+    temperature_max_c: 30
+    humidity_pct: "40-60"
+    fertilizer_schedule: monthly in spring and summer
+  toxicity:
+    - animal: cat
+      level: toxic
+      notes: calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: calcium oxalate crystals
+
+- scientific_name: Sansevieria trifasciata
+  common_name: Snake Plant
+  family: Asparagaceae
+  origin: West Africa
+  description: >
+    Hardy succulent with upright, sword-shaped leaves marked with horizontal
+    bands. Tolerates neglect and low light.
+  care:
+    watering_days_min: 14
+    watering_days_max: 28
+    light_level: low
+    temperature_min_c: 13
+    temperature_max_c: 27
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2-3 months
+  toxicity:
+    - animal: cat
+      level: toxic
+      notes: saponins cause drooling and gastrointestinal upset
+    - animal: dog
+      level: toxic
+      notes: saponins cause drooling and gastrointestinal upset
+
+- scientific_name: Spathiphyllum wallisii
+  common_name: Peace Lily
+  family: Araceae
+  origin: Tropical Americas
+  description: >
+    Elegant shade-tolerant plant with glossy leaves and white spathe flowers.
+    Indicates thirst by dramatic wilting that recovers within hours of watering.
+  care:
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
+    temperature_min_c: 18
+    temperature_max_c: 30
+    humidity_pct: "50-70"
+    fertilizer_schedule: monthly in spring and summer
+  toxicity:
+    - animal: cat
+      level: toxic
+      notes: calcium oxalate crystals cause oral irritation
+    - animal: dog
+      level: toxic
+      notes: calcium oxalate crystals cause oral irritation
+
+- scientific_name: Monstera deliciosa
+  common_name: Monstera
+  family: Araceae
+  origin: Southern Mexico and Panama
+  description: >
+    Large climbing aroid with dramatic fenestrated leaves. Thrives in bright
+    indirect light and rewards a moss pole with increasingly split foliage.
+  care:
+    watering_days_min: 7
+    watering_days_max: 10
+    light_level: bright-indirect
+    temperature_min_c: 18
+    temperature_max_c: 30
+    humidity_pct: "50-70"
+    fertilizer_schedule: monthly in spring and summer
+  toxicity:
+    - animal: cat
+      level: toxic
+      notes: calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: calcium oxalate crystals
+
+- scientific_name: Ficus lyrata
+  common_name: Fiddle Leaf Fig
+  family: Moraceae
+  origin: Western Africa
+  description: >
+    Tree-like plant with large violin-shaped leaves. Prefers a stable
+    location with bright indirect light and dislikes being moved.
+  care:
+    watering_days_min: 7
+    watering_days_max: 10
+    light_level: bright-indirect
+    temperature_min_c: 18
+    temperature_max_c: 24
+    humidity_pct: "40-60"
+    fertilizer_schedule: monthly in spring and summer
+  toxicity:
+    - animal: cat
+      level: mild
+      notes: sap can cause skin and oral irritation
+    - animal: dog
+      level: mild
+      notes: sap can cause skin and oral irritation
+
+# Remaining species are filled in by scripts/build_species_catalog.py once
+# the dataset is downloaded — see that script for the full template.
