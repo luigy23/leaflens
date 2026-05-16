@@ -31,35 +31,40 @@ def seed_from_yaml(path: Path | None = None) -> int:
         raise ValueError(f"expected a list of species in {path}")
 
     written = 0
-    for entry in data:
-        sp = Species.query.filter_by(scientific_name=entry["scientific_name"]).first()
-        if sp is None:
-            sp = Species(scientific_name=entry["scientific_name"])
-            db.session.add(sp)
+    with db.session.no_autoflush:
+        for entry in data:
+            sp = Species.query.filter_by(scientific_name=entry["scientific_name"]).first()
+            if sp is None:
+                sp = Species(scientific_name=entry["scientific_name"])
+                db.session.add(sp)
 
-        sp.common_name = entry["common_name"]
-        sp.family = entry.get("family")
-        sp.origin = entry.get("origin")
-        sp.description = entry.get("description")
-        sp.image_url = entry.get("image_url")
+            sp.common_name = entry["common_name"]
+            sp.family = entry.get("family")
+            sp.origin = entry.get("origin")
+            sp.description = entry.get("description")
+            sp.image_url = entry.get("image_url")
 
-        care = entry["care"]
-        if sp.care_profile is None:
-            sp.care_profile = CareProfile(species=sp, **care)
-        else:
+            care = entry["care"]
+            cp = sp.care_profile
+            if cp is None:
+                cp = CareProfile()
+                db.session.add(cp)
+                sp.care_profile = cp
             for key, value in care.items():
-                setattr(sp.care_profile, key, value)
+                setattr(cp, key, value)
 
-        # Replace toxicity records wholesale (simpler than diffing).
-        sp.toxicity_records.clear()
-        for tox in entry.get("toxicity", []):
-            sp.toxicity_records.append(
-                ToxicityRecord(
+            # Replace toxicity records wholesale (simpler than diffing).
+            for old in list(sp.toxicity_records):
+                db.session.delete(old)
+            sp.toxicity_records = []
+            for tox in entry.get("toxicity", []):
+                record = ToxicityRecord(
                     animal=tox["animal"], level=tox["level"], notes=tox.get("notes")
                 )
-            )
+                db.session.add(record)
+                sp.toxicity_records.append(record)
 
-        written += 1
+            written += 1
 
     db.session.commit()
     return written
