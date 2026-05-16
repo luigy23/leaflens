@@ -18,7 +18,13 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, WeightedRandomSampler
 
-from .architectures import SUPPORTED_ARCHS, build_model, freeze_backbone, unfreeze_all
+from .architectures import (
+    SUPPORTED_ARCHS,
+    build_model,
+    freeze_backbone,
+    head_and_backbone_params,
+    unfreeze_all,
+)
 from .dataset import PlantImageDataset, build_transforms
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -121,10 +127,11 @@ def main() -> int:
         if epoch == args.freeze_epochs + 1:
             print("Unfreezing backbone, switching to differential learning rates...")
             unfreeze_all(model)
+            head_params, backbone_params = head_and_backbone_params(model, args.arch)
             optimizer = torch.optim.AdamW(
                 [
-                    {"params": [p for n, p in model.named_parameters() if "head" not in n and "fc" not in n and "classifier" not in n], "lr": args.lr_backbone},
-                    {"params": [p for n, p in model.named_parameters() if "head" in n or "fc" in n or "classifier" in n], "lr": args.lr_head},
+                    {"params": backbone_params, "lr": args.lr_backbone},
+                    {"params": head_params, "lr": args.lr_head},
                 ],
                 weight_decay=1e-4,
             )
