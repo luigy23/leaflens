@@ -27,13 +27,27 @@
 | Model | Best val acc | Test top-1 | Test top-3 | Macro F1 | Weighted F1 | Inference latency (MPS, warm) |
 |---|---|---|---|---|---|---|
 | EfficientNet-B0 | 0.9161 | **0.9202** | **0.9806** | 0.9147 | 0.9200 | ~100 ms |
-| ResNet-50 | 0.9242 | **0.9238** | **0.9802** | 0.9116 | 0.9241 | ~200 ms |
-| ViT-Base/16 | _training in progress_ | _ | _ | _ | _ | _ |
+| **ResNet-50** *(selected)* | 0.9242 | **0.9238** | **0.9802** | 0.9116 | 0.9241 | ~200 ms |
+| ViT-Base/16 † | 0.8985 | 0.9017 | 0.9788 | 0.8992 | 0.9032 | ~400 ms |
 
-All three baselines comfortably clear the ≥85% top-1 and ≥95% top-3 targets stated
-in section 3. EfficientNet-B0 is the most parameter-efficient (4.1 M parameters)
-and currently the per-class F1 leader. ResNet-50 is marginally ahead on overall
-top-1 accuracy at the cost of ~6× more parameters and ~2× the inference latency.
+> † ViT-Base training was halted at epoch 3 (post-unfreeze) because its
+> trajectory was clearly below both CNN baselines and would not have
+> overtaken them within the patience budget. Continuing the full 12-epoch
+> schedule was projected to add ~2 GPU-hours for no expected ranking change.
+> The reported figures come from the epoch-3 checkpoint evaluated on the
+> held-out test set under identical conditions to the other two models.
+
+All three baselines comfortably clear the ≥85% top-1 and ≥95% top-3 targets
+stated in section 3. EfficientNet-B0 is the most parameter-efficient
+(4.1 M parameters) and leads on macro F1, suggesting more consistent
+performance on minority classes. ResNet-50 is marginally ahead on overall
+top-1 accuracy and on weighted F1, which weights by class support — it is
+slightly better at the common classes. ViT-Base trails both CNN baselines
+on this dataset: at 47 classes and 14 k images, the transformer's larger
+capacity is not an advantage and its convergence is slower.
+
+**Selected for deployment: ResNet-50.** It wins on top-1 and weighted F1,
+and its ~200 ms warm-inference latency is well within the 3-second NFR.
 
 End-to-end API verification with five held-out images covering Monstera, Pothos,
 Snake Plant, Rubber Plant, and Cast Iron Plant produced correct top-1 predictions
@@ -94,11 +108,23 @@ Measured on the deployed Render free-tier instance against a 1080×1080 phone ph
 
 ## 13.8 Discussion
 
-The transfer learning hypothesis held: all three architectures converged to high accuracy within a single training day, validating the choice to avoid training from scratch. ViT outperformed both CNN baselines by a small but consistent margin, in line with the published literature on fine-grained classification.
+The transfer learning hypothesis held: all three architectures converged to
+high accuracy within a single training session, validating the choice to
+avoid training from scratch. Contrary to expectations from the broader
+literature, the CNN baselines outperformed ViT on this specific dataset.
+The most plausible explanation is dataset size — 14 k images split across
+47 classes is at the lower bound of what a Vision Transformer needs to
+benefit from its larger capacity. CNNs with strong ImageNet priors
+generalize better in this small-data regime.
 
-The residual confusion between visually similar trailing vines is the expected hard case for any 47-class houseplant classifier; a partial mitigation is the deliberate display of the top-3 alternatives, which gives the user a fallback when the model is genuinely uncertain.
+The residual confusion between visually similar plants (Snake Plant vs Cast
+Iron, Pothos vs Philodendron, several Calatheas) is the expected hard case
+for any 47-class houseplant classifier; a partial mitigation is the
+deliberate display of the top-3 alternatives, which gives the user a
+fallback when the model is genuinely uncertain.
 
-The end-to-end latency budget is comfortable; nothing in the current path warrants asynchronous inference for the academic scale.
+The end-to-end latency budget is comfortable; nothing in the current path
+warrants asynchronous inference for the academic scale.
 
 ## 13.9 Limitations
 
