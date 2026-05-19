@@ -1,0 +1,797 @@
+/* =====================================================================
+   LeafLens — reveal.js theme overrides
+   Botanical sage palette · Fraunces for display, Inter for body
+   ===================================================================== */
+
+:root {
+  --forest:   #476A3E;
+  --sage:     #7EA16F;
+  --moss:     #A9C39E;
+  --cream:    #F5F8F4;
+  --paper:    #FAFBF8;
+  --white:    #FFFFFF;
+  --ink:      #243121;
+  --ink-soft: #4A5D44;
+  --muted:    #8B998A;
+  --line:     #DCE5D6;
+  --amber:    #B85042;
+  --highlight:#EBF2E7;
+}
+
+/* ------------------------------ Base ------------------------------ */
+.reveal {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  font-size: 22px;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  background: var(--cream);
+  padding: 48px 56px;
+  text-align: left;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.reveal .slides section > h2 {
+  font-size: 52px;
+  line-height: 1.1;
+  margin: 8px 0 28px;
+  color: var(--ink);
+}
+
+.reveal p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ------------------------------ Brand ----------------------------- */
+.leaf-mark {
+  display: inline-block;
+  width: 18px;
+  height: 22px;
+  background: var(--forest);
+  border-radius: 60% 0 60% 0;
+  transform: rotate(-20deg);
+  position: relative;
+  vertical-align: middle;
+}
+.leaf-mark::before {
+  content: "";
+  position: absolute;
+  top: 4px; left: 4px;
+  width: 10px; height: 14px;
+  background: var(--cream);
+  border-radius: 60% 0 60% 0;
+  transform: rotate(-2deg);
+}
+
+/* ------------------------------ Topbar ---------------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  padding: 0 0 12px 0;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+.topbar > :nth-child(2) {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  color: var(--forest);
+  font-size: 18px;
+}
+.topbar .kicker {
+  margin-left: auto;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ============================================================
+   Slide 1 — Title (dark)
+   ============================================================ */
+.slide-dark {
+  background: var(--forest) !important;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.slide-dark h1, .slide-dark h2, .slide-dark h3, .slide-dark h4 { color: var(--white); }
+
+.bg-leaves {
+  position: absolute;
+  top: -100px;
+  right: -120px;
+  width: 540px;
+  height: 540px;
+  pointer-events: none;
+}
+.bg-leaves.bg-leaves-bottom {
+  top: auto;
+  right: auto;
+  bottom: -140px;
+  left: -160px;
+  width: 600px;
+  height: 600px;
+}
+.bg-leaves .leaf {
+  position: absolute;
+  background: var(--sage);
+  border-radius: 60% 0 60% 0;
+  opacity: 0.15;
+  transform: rotate(35deg);
+}
+.bg-leaves .l1 { top:  0;   left:  60px; width: 220px; height: 320px; opacity: 0.25; }
+.bg-leaves .l2 { top: 40px; left: 100px; width: 220px; height: 320px; opacity: 0.20; }
+.bg-leaves .l3 { top: 80px; left: 140px; width: 220px; height: 320px; opacity: 0.15; }
+.bg-leaves .l4 { top:120px; left: 180px; width: 220px; height: 320px; opacity: 0.10; }
+.bg-leaves .l5 { top:160px; left: 220px; width: 220px; height: 320px; opacity: 0.06; }
+.bg-leaves.bg-leaves-bottom .leaf { transform: rotate(-25deg); }
+
+.slide-title .brand {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 56px;
+}
+.slide-title .brand .brand-name {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  color: var(--moss);
+  font-size: 28px;
+}
+.slide-title .brand .leaf-mark {
+  width: 24px; height: 30px;
+  background: var(--moss);
+}
+.slide-title .brand .leaf-mark::before { background: var(--forest); }
+
+.slide-title h1 {
+  font-size: 88px;
+  line-height: 1.0;
+  font-weight: 600;
+  color: var(--white);
+  margin: 0 0 12px 0;
+}
+.slide-title h1 em {
+  display: block;
+  font-style: italic;
+  color: var(--moss);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.slide-title .lead {
+  font-size: 22px;
+  color: var(--moss);
+  margin-top: 24px;
+}
+
+.accent {
+  border: 0;
+  height: 4px;
+  background: var(--moss);
+  width: 64px;
+  margin: 32px 0;
+  border-radius: 2px;
+}
+
+.slide-title .meta {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--moss);
+}
+.slide-title .meta strong {
+  display: block;
+  color: var(--white);
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+   Slide 2 — Problem
+   ============================================================ */
+.row { display: flex; gap: 28px; align-items: stretch; }
+.big-stat {
+  background: var(--forest);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 32px 28px;
+  flex: 0 0 36%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.big-stat .number {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 140px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.big-stat .caption {
+  margin-top: 18px;
+  color: var(--moss);
+  font-size: 16px;
+}
+
+.cards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--forest);
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+.card h3 {
+  color: var(--forest);
+  font-size: 22px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.card p {
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+.warn {
+  margin-top: 28px;
+  color: var(--amber);
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 20px;
+}
+
+/* ============================================================
+   Grids
+   ============================================================ */
+.grid {
+  display: grid;
+  gap: 18px;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+/* ============================================================
+   Slide 3 — Deliverables
+   ============================================================ */
+.deliverable {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 28px;
+}
+.deliverable .num {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  color: var(--sage);
+  font-size: 44px;
+  line-height: 1;
+}
+.deliverable h3 {
+  font-size: 28px;
+  margin: 16px 0 12px;
+  font-weight: 600;
+}
+.deliverable::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--sage);
+  border-radius: 2px;
+  margin: 8px 0 14px;
+}
+.deliverable p {
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+.banner {
+  background: var(--forest);
+  color: var(--white);
+  text-align: center;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 28px;
+  font-size: 18px;
+}
+
+/* ============================================================
+   Slide 4 — Demo placeholders
+   ============================================================ */
+.demo-scene {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.demo-scene .placeholder {
+  background: linear-gradient(135deg, var(--moss) 0%, var(--sage) 100%);
+  color: var(--forest);
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  opacity: 0.85;
+}
+.demo-scene .caption {
+  padding: 18px 20px;
+  flex: 1;
+}
+.demo-scene .caption .num {
+  font-family: "Fraunces", Georgia, serif;
+  color: var(--sage);
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 8px;
+}
+.demo-scene .caption h3 {
+  display: inline;
+  font-size: 22px;
+  font-weight: 600;
+}
+.demo-scene .caption .sub {
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 4px;
+}
+.demo-scene .caption .body {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.cue {
+  margin-top: 24px;
+  text-align: center;
+  color: var(--forest);
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+}
+
+/* ============================================================
+   Slide 5 — Dataset / stats / bars
+   ============================================================ */
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+}
+.stat-card .value {
+  font-family: "Fraunces", Georgia, serif;
+  color: var(--forest);
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1;
+}
+.stat-card .label {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+.chart-title {
+  margin: 20px 0 8px;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 16px;
+}
+
+.bars { display: flex; flex-direction: column; gap: 8px; }
+.bar { display: grid; grid-template-columns: 200px 1fr 60px; align-items: center; gap: 12px; }
+.bar .lbl { color: var(--ink); font-size: 14px; }
+.bar .track {
+  height: 18px;
+  background: var(--highlight);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar .fill {
+  height: 100%;
+  width: var(--w);
+  background: linear-gradient(90deg, var(--forest) 0%, var(--sage) 100%);
+  border-radius: 4px;
+}
+.bar .val {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: right;
+}
+
+.caption-muted {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.caption-muted code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  background: var(--highlight);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--forest);
+}
+
+/* ============================================================
+   Slide 6 — Architectures
+   ============================================================ */
+.arch-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--forest);
+  border-radius: 10px;
+  padding: 22px;
+}
+.arch-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.arch-card .params strong {
+  color: var(--forest);
+  font-size: 22px;
+  font-weight: 700;
+}
+.arch-card .params span {
+  color: var(--muted);
+  font-size: 14px;
+}
+.arch-card p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+.recipe {
+  background: var(--forest);
+  color: var(--moss);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-top: 22px;
+}
+.recipe h4 {
+  color: var(--moss);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.recipe p {
+  color: var(--white);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   Slide 7 — Results table
+   ============================================================ */
+table.results {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+table.results th {
+  background: var(--forest);
+  color: var(--white);
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 600;
+}
+table.results td {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  padding: 14px;
+  color: var(--ink);
+}
+table.results tr.selected td {
+  background: var(--highlight);
+  color: var(--forest);
+  font-weight: 600;
+}
+table.results tr.muted td {
+  color: var(--ink-soft);
+}
+table.results .pill {
+  display: inline-block;
+  background: var(--forest);
+  color: var(--white);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+table.results .dagger {
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.footnote {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.banner-check {
+  margin-top: 20px;
+  background: var(--forest);
+  font-weight: 600;
+}
+
+/* ============================================================
+   Slide 8 — Failure pairs
+   ============================================================ */
+.pair {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  text-align: center;
+}
+.pair .a, .pair .b {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+}
+.pair .vs {
+  color: var(--sage);
+  font-size: 28px;
+  margin: 6px 0;
+}
+.pair p {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.mitigations {
+  background: var(--highlight);
+  border-radius: 10px;
+  padding: 18px 24px;
+  margin-top: 24px;
+}
+.mitigations h4 {
+  color: var(--forest);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.mitigations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mitigations li {
+  color: var(--ink);
+  font-size: 15px;
+  position: relative;
+  padding-left: 18px;
+}
+.mitigations li::before {
+  content: "·";
+  position: absolute;
+  left: 4px;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+/* ============================================================
+   Slide 9 — Architecture diagram
+   ============================================================ */
+.arch-stack { display: flex; flex-direction: column; gap: 8px; }
+.layer {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+}
+.layer .bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: var(--forest);
+  border-radius: 8px 0 0 8px;
+}
+.layer .layer-body { flex: 1; padding-left: 8px; }
+.layer .layer-body h3 {
+  font-size: 22px;
+  color: var(--ink);
+  margin: 0;
+}
+.layer .layer-body p {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-top: 4px;
+}
+.layer .host {
+  background: var(--forest);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.arrow {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin: 2px 0;
+}
+.data-tier { gap: 12px; }
+.layer.half { flex: 1; }
+
+/* ============================================================
+   Slide 10 — Engineering practices
+   ============================================================ */
+.practice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.practice-list article {
+  display: grid;
+  grid-template-columns: 220px 220px 1fr;
+  gap: 18px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--forest);
+  border-radius: 8px;
+  padding: 12px 18px;
+}
+.practice-list .key {
+  color: var(--forest);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.practice-list .value {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+}
+.practice-list .sub {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Slide 11 — Future work
+   ============================================================ */
+.future article {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.future .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--white);
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.future article h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.future article p {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* ============================================================
+   Slide 12 — Thanks
+   ============================================================ */
+.slide-thanks h1 {
+  font-size: 110px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 24px;
+}
+.slide-thanks h2.italic {
+  font-style: italic;
+  color: var(--moss);
+  font-weight: 500;
+  font-size: 64px;
+  margin-top: 8px;
+}
+.slide-thanks .links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 8px;
+}
+.slide-thanks .links .muted {
+  color: var(--moss);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.slide-thanks .links .big-link {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--white);
+  margin-top: 4px;
+  word-break: break-all;
+}
+.slide-thanks .meta {
+  position: absolute;
+  bottom: 40px;
+  left: 56px;
+  right: 56px;
+  color: var(--moss);
+  font-size: 14px;
+}
+
+/* ============================================================
+   Reveal.js controls + progress
+   ============================================================ */
+.reveal .progress {
+  color: var(--forest);
+  height: 4px;
+}
+.reveal .controls {
+  color: var(--forest);
+}
+.reveal .slide-number {
+  background: transparent;
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+}

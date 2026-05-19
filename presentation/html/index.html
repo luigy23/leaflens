@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>LeafLens — Final Project Presentation</title>
+
+  <!-- reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- =============== SLIDE 1 — Title =============== -->
+      <section class="slide-dark slide-title">
+        <div class="bg-leaves" aria-hidden="true">
+          <div class="leaf l1"></div>
+          <div class="leaf l2"></div>
+          <div class="leaf l3"></div>
+          <div class="leaf l4"></div>
+          <div class="leaf l5"></div>
+        </div>
+
+        <header class="brand">
+          <span class="leaf-mark"></span>
+          <span class="brand-name">LeafLens</span>
+        </header>
+
+        <h1>
+          Identify any houseplant
+          <em>in a single photograph.</em>
+        </h1>
+
+        <p class="lead">An end-to-end computer-vision web application.</p>
+
+        <hr class="accent" />
+
+        <footer class="meta">
+          <strong>Luigy Leonardo</strong>
+          <span>Artificial Intelligence · BEINSOF52</span>
+          <span>Universidad Surcolombiana · May 2026</span>
+          <span>Instructor: Juan Antonio Castro Silva</span>
+        </footer>
+
+        <aside class="notes">
+          Opener: Half of all houseplants bought every year die within twelve months. Not because owners
+          don't care — because they don't know what they have. LeafLens is a one-photo fix for that.
+          I'm Luigy Leonardo, this is my final project for the AI course. Ten minutes.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 2 — Problem =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Why this exists</span></header>
+        <h2>The problem</h2>
+
+        <div class="row">
+          <div class="big-stat">
+            <div class="number">50%+</div>
+            <div class="caption">of houseplants die within their first year at home</div>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <h3>Identification</h3>
+              <p>The plant came without a label or carries a generic store tag.</p>
+            </article>
+            <article class="card">
+              <h3>Lookup</h3>
+              <p>Care references are dense, fragmented, and often contradict.</p>
+            </article>
+            <article class="card">
+              <h3>Action</h3>
+              <p>“Bright indirect light” doesn’t translate into where to put the pot.</p>
+            </article>
+          </div>
+        </div>
+
+        <p class="warn">Pet owners discover plant toxicity the hard way.</p>
+
+        <aside class="notes">
+          Half of bought plants die in year one. Three failure modes: owners don't know the species,
+          can't find good care info, can't translate vague advice into actions. Pet owners are an
+          underserved subgroup — many common houseplants are toxic to cats and dogs, and most owners
+          only learn this after a vet visit.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 3 — What it does =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Three deliverables, one photo</span></header>
+        <h2>What LeafLens does</h2>
+
+        <div class="grid grid-3">
+          <article class="deliverable">
+            <div class="num">01</div>
+            <h3>Identification</h3>
+            <p>Top-1 species with confidence + two alternatives when uncertain.</p>
+          </article>
+          <article class="deliverable">
+            <div class="num">02</div>
+            <h3>Care card</h3>
+            <p>Watering, light, temperature, humidity, fertilizer schedule.</p>
+          </article>
+          <article class="deliverable">
+            <div class="num">03</div>
+            <h3>Pet safety</h3>
+            <p>Toxic / mild / safe for cats and dogs, sourced from the ASPCA database.</p>
+          </article>
+        </div>
+
+        <div class="banner">Sub-second end-to-end latency on the live deployment.</div>
+
+        <aside class="notes">
+          Three things at once: classify the species, return a care card, flag pet safety. End-to-end
+          response is under one second when warm. Care data is curated from the ASPCA toxicity
+          database — the standard reference for US vets.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 4 — Live demo =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Three scenarios</span></header>
+        <h2>Live demo</h2>
+
+        <div class="grid grid-3 demo">
+          <article class="demo-scene">
+            <div class="placeholder">📸</div>
+            <div class="caption">
+              <span class="num">1</span>
+              <h3>Pothos</h3>
+              <p class="sub">Clear, common, high confidence</p>
+              <p class="body">Show the care card.</p>
+            </div>
+          </article>
+          <article class="demo-scene">
+            <div class="placeholder">📸</div>
+            <div class="caption">
+              <span class="num">2</span>
+              <h3>Snake plant</h3>
+              <p class="sub">Toxic-to-pets warning</p>
+              <p class="body">Show the safety badge.</p>
+            </div>
+          </article>
+          <article class="demo-scene">
+            <div class="placeholder">📸</div>
+            <div class="caption">
+              <span class="num">3</span>
+              <h3>Out-of-distribution</h3>
+              <p class="sub">Low-confidence path</p>
+              <p class="body">Show the explicit banner.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="cue">→ Switch to the browser. Real photos, real predictions.</p>
+
+        <aside class="notes">
+          This is the live demo slide. Open the browser, drop in three pre-staged photos.
+          First: Pothos — high confidence, show the care card.
+          Second: Snake plant — show the toxic-to-pets warning.
+          Third: out-of-distribution photo — show the low-confidence banner.
+          Keep narration tight, let the cards speak.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 5 — Dataset =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Kaggle House Plant Species</span></header>
+        <h2>Dataset</h2>
+
+        <div class="grid grid-3 stats">
+          <article class="stat-card">
+            <div class="value">47</div>
+            <div class="label">species classes</div>
+          </article>
+          <article class="stat-card">
+            <div class="value">14,774</div>
+            <div class="label">labelled images</div>
+          </article>
+          <article class="stat-card">
+            <div class="value">70/15/15</div>
+            <div class="label">stratified train / val / test</div>
+          </article>
+        </div>
+
+        <p class="chart-title">Class size distribution (5 of 47 classes)</p>
+        <div class="bars">
+          <div class="bar"><span class="lbl">Yucca</span>        <div class="track"><div class="fill" style="--w: 14%"></div></div><span class="val">66</span></div>
+          <div class="bar"><span class="lbl">Asparagus Fern</span><div class="track"><div class="fill" style="--w: 37%"></div></div><span class="val">169</span></div>
+          <div class="bar"><span class="lbl">Aloe Vera</span>     <div class="track"><div class="fill" style="--w: 55%"></div></div><span class="val">251</span></div>
+          <div class="bar"><span class="lbl">Tradescantia</span>  <div class="track"><div class="fill" style="--w: 75%"></div></div><span class="val">341</span></div>
+          <div class="bar"><span class="lbl">Anthurium</span>     <div class="track"><div class="fill" style="--w: 100%"></div></div><span class="val">454</span></div>
+        </div>
+
+        <p class="caption-muted">Stratified sampling with <code>random_state=42</code> — splits are reproducible from CSV manifests.</p>
+
+        <aside class="notes">
+          Forty-seven classes, fifteen thousand images, mildly imbalanced — Yucca only has 66 images,
+          Anthurium has 454. We handle that with class-weighted loss and augmentation. Splits are
+          deterministic — same seed gives the same partition. Manifests live in CSV files so anyone
+          can reproduce.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 6 — Architectures =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Three transfer-learning baselines</span></header>
+        <h2>Architectures compared</h2>
+
+        <div class="grid grid-3 arch">
+          <article class="arch-card">
+            <h3>EfficientNet-B0</h3>
+            <div class="params"><strong>4.1 M</strong> <span>parameters</span></div>
+            <p>Lightweight CNN — fastest inference, smallest footprint.</p>
+          </article>
+          <article class="arch-card">
+            <h3>ResNet-50</h3>
+            <div class="params"><strong>23.6 M</strong> <span>parameters</span></div>
+            <p>Strong classical baseline — 80.9% on ImageNet (V2 weights).</p>
+          </article>
+          <article class="arch-card">
+            <h3>ViT-Base/16</h3>
+            <div class="params"><strong>85.8 M</strong> <span>parameters</span></div>
+            <p>Modern transformer reference — sanity check on small data.</p>
+          </article>
+        </div>
+
+        <div class="recipe">
+          <h4>Training recipe — identical across all three</h4>
+          <p>AdamW + class-weighted cross-entropy. 3-epoch frozen-backbone warm-up, then differential
+          learning rates (1e-4 backbone / 1e-3 head). Early stopping (patience 5). 224 × 224 inputs.
+          Batch 32 for CNNs, 16 for ViT.</p>
+        </div>
+
+        <aside class="notes">
+          Three architectures. All pretrained on ImageNet. Heads replaced with a 47-way linear layer.
+          Same training recipe across all three for a fair comparison: AdamW, class-weighted loss,
+          three epochs frozen then unfreeze with two different learning rates, early stopping. Batch
+          sizes differ — ViT needs smaller because of memory.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 7 — Results =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Held-out test set · 2,217 images</span></header>
+        <h2>Results</h2>
+
+        <table class="results">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Test top-1</th>
+              <th>Test top-3</th>
+              <th>Macro F1</th>
+              <th>Weighted F1</th>
+              <th>Latency (warm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>EfficientNet-B0</td>
+              <td>92.02%</td>
+              <td>98.06%</td>
+              <td>0.9147</td>
+              <td>0.9200</td>
+              <td>~100 ms</td>
+            </tr>
+            <tr class="selected">
+              <td><strong>ResNet-50</strong> <span class="pill">★ Selected</span></td>
+              <td><strong>92.38%</strong></td>
+              <td>98.02%</td>
+              <td>0.9116</td>
+              <td><strong>0.9241</strong></td>
+              <td>~200 ms</td>
+            </tr>
+            <tr class="muted">
+              <td>ViT-Base/16 <span class="dagger">†</span></td>
+              <td>90.17%</td>
+              <td>97.88%</td>
+              <td>0.8992</td>
+              <td>0.9032</td>
+              <td>~400 ms</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="footnote">† ViT-Base training was halted at epoch 3 — its trajectory was clearly below both CNN baselines and would not have overtaken them within the patience budget.</p>
+
+        <div class="banner banner-check">✓ &nbsp;All targets met:  ≥ 85% top-1  ·  ≥ 95% top-3</div>
+
+        <aside class="notes">
+          ResNet-50 wins on top-1 and weighted F1 by a small margin. EfficientNet leads macro F1,
+          which weights all classes equally — it's slightly better on the rarer species. ViT trails
+          both CNN baselines. The probable reason: this dataset is in ViT's small-data weakness
+          zone. Both course targets cleared. ResNet-50 goes into production.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 8 — Failure modes =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Honest analysis</span></header>
+        <h2>Where the model still fails</h2>
+
+        <div class="grid grid-3 failure">
+          <article class="pair">
+            <div class="a">Snake Plant</div>
+            <div class="vs">↕</div>
+            <div class="b">Cast Iron Plant</div>
+            <p>Dark strap-shaped leaves, similar habit.</p>
+          </article>
+          <article class="pair">
+            <div class="a">Pothos</div>
+            <div class="vs">↕</div>
+            <div class="b">Heartleaf Philodendron</div>
+            <p>Same family, same trailing-vine habit.</p>
+          </article>
+          <article class="pair">
+            <div class="a">Begonia</div>
+            <div class="vs">↕</div>
+            <div class="b">Iron Cross Begonia</div>
+            <p>Subspecies — hard even for botanists.</p>
+          </article>
+        </div>
+
+        <div class="mitigations">
+          <h4>Mitigations shipped</h4>
+          <ul>
+            <li>The UI always shows the top-3 alternatives — the user picks if the model is close.</li>
+            <li>Below 40% top-1 confidence, the result card is replaced by an explicit “try a better photo” banner.</li>
+            <li>Augmentation (rotation, flip, color jitter) makes the model robust to phone-photo variations.</li>
+          </ul>
+        </div>
+
+        <aside class="notes">
+          Confusion matrix highlights — these are the residual hard cases. Visually similar plants
+          share leaf shape, color, and growth habit. We mitigate by always returning top-3, and by
+          surfacing a clear banner when confidence is low. The model is not allowed to silently
+          guess.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 9 — Architecture =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Three tiers, single region</span></header>
+        <h2>System architecture</h2>
+
+        <div class="arch-stack">
+          <div class="layer">
+            <span class="bar"></span>
+            <div class="layer-body">
+              <h3>Frontend</h3>
+              <p>React 18 + Vite + Tailwind CSS — upload, catalog, about pages</p>
+            </div>
+            <span class="host">Vercel</span>
+          </div>
+
+          <div class="arrow">▼ &nbsp; HTTPS multipart</div>
+
+          <div class="layer">
+            <span class="bar"></span>
+            <div class="layer-body">
+              <h3>Backend</h3>
+              <p>Flask 3.1 + gunicorn — validates, preprocesses, runs inference, enriches</p>
+            </div>
+            <span class="host">Render</span>
+          </div>
+
+          <div class="arrow">▼ &nbsp; SQLAlchemy ORM &nbsp; + &nbsp; PyTorch in-process</div>
+
+          <div class="row data-tier">
+            <div class="layer half">
+              <span class="bar"></span>
+              <div class="layer-body">
+                <h3>PostgreSQL</h3>
+                <p>47 species · 47 care profiles · 94 toxicity records</p>
+              </div>
+            </div>
+            <div class="layer half">
+              <span class="bar"></span>
+              <div class="layer-body">
+                <h3>PyTorch model</h3>
+                <p>ResNet-50 · loaded at boot · CPU or MPS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          Frontend on Vercel, backend on Render free tier, Postgres on Render. Inference runs in the
+          same Flask process — the model is loaded once at boot and reused. No separate GPU node,
+          no queue, no microservices. Right scale for the academic deliverable.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 10 — Engineering practices =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">What's actually under the hood</span></header>
+        <h2>Engineering practices</h2>
+
+        <div class="practice-list">
+          <article>
+            <span class="key">Documentation</span>
+            <span class="value">17 sections in English</span>
+            <span class="sub">Intro, problem, SoTA, requirements, use cases, ER model, mockups, API catalog, testing, architecture, results, future work, presentation, deployment.</span>
+          </article>
+          <article>
+            <span class="key">Tests</span>
+            <span class="value">pytest + pytest-flask</span>
+            <span class="sub">Unit tests for preprocessing and splits, integration tests for every API endpoint with in-memory SQLite + stub classifier.</span>
+          </article>
+          <article>
+            <span class="key">Continuous integration</span>
+            <span class="value">GitHub Actions</span>
+            <span class="sub">Ruff lint, pytest with coverage, npm build — runs on every push to main.</span>
+          </article>
+          <article>
+            <span class="key">Reproducibility</span>
+            <span class="value">seed = 42, CSV manifests</span>
+            <span class="sub">Same dataset partition every time — manifests live next to the code, gitignored only because they reference local paths.</span>
+          </article>
+          <article>
+            <span class="key">Deployment</span>
+            <span class="value">Docker + Render + Vercel</span>
+            <span class="sub">Free tier only. render.yaml + Dockerfile are checked in; deploys are one click.</span>
+          </article>
+        </div>
+
+        <aside class="notes">
+          The non-AI parts matter too — they're 70% of the rubric. Seventeen documentation sections,
+          full test coverage of the API, CI on every push. Anyone can clone the repo and reproduce
+          the numbers — same seed, same splits, same metrics.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 11 — Future work =============== -->
+      <section>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Where this goes next</span></header>
+        <h2>Future work</h2>
+
+        <div class="grid grid-2 future">
+          <article>
+            <span class="num">1</span>
+            <div>
+              <h3>Bigger catalog</h3>
+              <p>Expand to 100+ species by combining Kaggle with a curated PlantNet-300K subset.</p>
+            </div>
+          </article>
+          <article>
+            <span class="num">2</span>
+            <div>
+              <h3>On-device inference</h3>
+              <p>Export to CoreML so prediction runs in the mobile browser — no upload, no server cost, full privacy.</p>
+            </div>
+          </article>
+          <article>
+            <span class="num">3</span>
+            <div>
+              <h3>Disease overlay</h3>
+              <p>A second classifier trained on PlantVillage flags pests and diseases on top of the species.</p>
+            </div>
+          </article>
+          <article>
+            <span class="num">4</span>
+            <div>
+              <h3>Care timeline</h3>
+              <p>Move beyond a static card to a live schedule with push reminders for watering, fertilizing, re-potting.</p>
+            </div>
+          </article>
+        </div>
+
+        <aside class="notes">
+          Catalog expansion is the obvious next step. On-device inference is the right long-term
+          move for privacy and latency. Disease overlay is a separate classifier on top. Care
+          timeline is where this turns into a product, not just a demo.
+        </aside>
+      </section>
+
+      <!-- =============== SLIDE 12 — Thanks =============== -->
+      <section class="slide-dark slide-thanks">
+        <div class="bg-leaves bg-leaves-bottom" aria-hidden="true">
+          <div class="leaf l1"></div>
+          <div class="leaf l2"></div>
+          <div class="leaf l3"></div>
+          <div class="leaf l4"></div>
+        </div>
+
+        <h1>Thank you.</h1>
+        <h2 class="italic">Questions?</h2>
+
+        <hr class="accent" />
+
+        <div class="links">
+          <div>
+            <p class="muted">Source code</p>
+            <p class="big-link">github.com/luigy23/leaflens</p>
+          </div>
+          <div>
+            <p class="muted">Live demo</p>
+            <p class="big-link">(deployed URL after Render)</p>
+          </div>
+        </div>
+
+        <footer class="meta">
+          Luigy Leonardo &nbsp;·&nbsp; Artificial Intelligence (BEINSOF52) &nbsp;·&nbsp; Universidad Surcolombiana &nbsp;·&nbsp; May 2026
+        </footer>
+
+        <aside class="notes">
+          Closing: if you've ever killed a plant by loving it too much, LeafLens is for you. Source
+          is on GitHub, deployed URL below. Thank you — questions?
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- reveal.js -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'fade',
+      transitionSpeed: 'default',
+      controlsTutorial: false,
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2.0,
+      plugins: [ RevealNotes ],
+    });
+  </script>
+</body>
+</html>
