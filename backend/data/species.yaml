@@ -1,1083 +1,1056 @@
-- scientific_name: Aloe vera
-  common_name: Aloe Vera
-  family: Asphodelaceae
-  origin: Arabian Peninsula
-  description: 'Succulent species widely grown for its medicinal leaves. Stores water
-    in thick, fleshy leaves that allow it to survive long dry periods.
+# LeafLens species catalog — curated for all 47 classes in the dataset.
+#
+# IMPORTANT: `common_name` matches the exact folder name from the Kaggle
+# House Plant Species dataset. This is what the model returns, so the
+# backend can look up care information directly.
+#
+# Sources: ASPCA toxicity database, RHS plant finder, Pl@ntNet,
+# Missouri Botanical Garden, standard horticultural references.
 
-    '
-  care:
-    watering_days_min: 14
-    watering_days_max: 21
-    light_level: bright-indirect
-    temperature_min_c: 13
-    temperature_max_c: 27
-    humidity_pct: 30-50
-    fertilizer_schedule: every 2 months in spring and summer
-  toxicity:
-  - animal: cat
-    level: toxic
-    notes: saponins cause vomiting and diarrhea
-  - animal: dog
-    level: toxic
-    notes: saponins cause vomiting and diarrhea
-- scientific_name: Epipremnum aureum
-  common_name: Golden Pothos
-  family: Araceae
-  origin: Solomon Islands
-  description: 'Trailing vine with heart-shaped, often variegated leaves. One of the
-    easiest houseplants to grow and tolerates low light.
-
-    '
-  care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 30
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
-  toxicity:
-  - animal: cat
-    level: toxic
-    notes: calcium oxalate crystals
-  - animal: dog
-    level: toxic
-    notes: calcium oxalate crystals
-- scientific_name: Sansevieria trifasciata
-  common_name: Snake Plant
-  family: Asparagaceae
-  origin: West Africa
-  description: 'Hardy succulent with upright, sword-shaped leaves marked with horizontal
-    bands. Tolerates neglect and low light.
-
-    '
-  care:
-    watering_days_min: 14
-    watering_days_max: 28
-    light_level: low
-    temperature_min_c: 13
-    temperature_max_c: 27
-    humidity_pct: 30-50
-    fertilizer_schedule: every 2-3 months
-  toxicity:
-  - animal: cat
-    level: toxic
-    notes: saponins cause drooling and gastrointestinal upset
-  - animal: dog
-    level: toxic
-    notes: saponins cause drooling and gastrointestinal upset
-- scientific_name: Spathiphyllum wallisii
-  common_name: Peace Lily
-  family: Araceae
-  origin: Tropical Americas
-  description: 'Elegant shade-tolerant plant with glossy leaves and white spathe flowers.
-    Indicates thirst by dramatic wilting that recovers within hours of watering.
-
-    '
-  care:
-    watering_days_min: 5
-    watering_days_max: 7
-    light_level: medium-indirect
-    temperature_min_c: 18
-    temperature_max_c: 30
-    humidity_pct: 50-70
-    fertilizer_schedule: monthly in spring and summer
-  toxicity:
-  - animal: cat
-    level: toxic
-    notes: calcium oxalate crystals cause oral irritation
-  - animal: dog
-    level: toxic
-    notes: calcium oxalate crystals cause oral irritation
-- scientific_name: Monstera deliciosa
-  common_name: Monstera
-  family: Araceae
-  origin: Southern Mexico and Panama
-  description: 'Large climbing aroid with dramatic fenestrated leaves. Thrives in
-    bright indirect light and rewards a moss pole with increasingly split foliage.
-
-    '
-  care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 30
-    humidity_pct: 50-70
-    fertilizer_schedule: monthly in spring and summer
-  toxicity:
-  - animal: cat
-    level: toxic
-    notes: calcium oxalate crystals
-  - animal: dog
-    level: toxic
-    notes: calcium oxalate crystals
-- scientific_name: Ficus lyrata
-  common_name: Fiddle Leaf Fig
-  family: Moraceae
-  origin: Western Africa
-  description: 'Tree-like plant with large violin-shaped leaves. Prefers a stable
-    location with bright indirect light and dislikes being moved.
-
-    '
+- scientific_name: Saintpaulia ionantha
+  common_name: African Violet (Saintpaulia ionantha)
+  family: Gesneriaceae
+  origin: Tanzania and Kenya
+  description: >
+    Compact rosette-forming plant with velvety leaves and small clustered
+    flowers in violet, pink, or white. Famously fussy about watering technique.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
     temperature_min_c: 18
     temperature_max_c: 24
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "40-60"
+    fertilizer_schedule: every 2 weeks with balanced houseplant fertilizer
   toxicity:
-  - animal: cat
-    level: mild
-    notes: sap can cause skin and oral irritation
-  - animal: dog
-    level: mild
-    notes: sap can cause skin and oral irritation
-- scientific_name: Unknown African Violet (Saintpaulia ionantha)
-  common_name: African Violet (Saintpaulia ionantha)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Aloe vera
+  common_name: Aloe Vera
+  family: Asphodelaceae
+  origin: Arabian Peninsula
+  description: >
+    Succulent with thick fleshy leaves filled with a clear medicinal gel.
+    Stores water that allows it to survive long dry periods.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 14
+    watering_days_max: 21
     light_level: bright-indirect
-    temperature_min_c: 18
+    temperature_min_c: 13
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Anthurium (Anthurium andraeanum)
+    - animal: cat
+      level: toxic
+      notes: saponins cause vomiting and diarrhea
+    - animal: dog
+      level: toxic
+      notes: saponins cause vomiting and diarrhea
+
+- scientific_name: Anthurium andraeanum
   common_name: Anthurium (Anthurium andraeanum)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araceae
+  origin: Colombia and Ecuador
+  description: >
+    Tropical plant grown for its glossy heart-shaped leaves and waxy red,
+    pink, or white spathes that last for weeks.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_max_c: 30
+    humidity_pct: "60-80"
+    fertilizer_schedule: monthly in spring and summer with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Areca Palm (Dypsis lutescens)
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+
+- scientific_name: Dypsis lutescens
   common_name: Areca Palm (Dypsis lutescens)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Arecaceae
+  origin: Madagascar
+  description: >
+    Clumping palm with feathery yellow-green fronds. One of the few palms
+    that thrives indoors and is non-toxic to pets.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 5
+    watering_days_max: 7
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_max_c: 30
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Asparagus Fern (Asparagus setaceus)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Asparagus setaceus
   common_name: Asparagus Fern (Asparagus setaceus)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: Southern Africa
+  description: >
+    Not a true fern. Wispy bright-green needle-like leaves on arching stems.
+    Stems may carry small thorns.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 5
+    watering_days_max: 7
     light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_min_c: 13
+    temperature_max_c: 24
+    humidity_pct: "50-70"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Begonia (Begonia spp.)
+    - animal: cat
+      level: toxic
+      notes: berries cause vomiting and abdominal pain; sapogenins cause skin irritation
+    - animal: dog
+      level: toxic
+      notes: berries cause vomiting and abdominal pain; sapogenins cause skin irritation
+
+- scientific_name: Begonia spp.
   common_name: Begonia (Begonia spp.)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Begoniaceae
+  origin: Tropics worldwide
+  description: >
+    Diverse genus grown for showy flowers or strikingly patterned leaves.
+    Most prefer high humidity and even moisture.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 5
+    watering_days_max: 7
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_max_c: 24
+    humidity_pct: "50-70"
+    fertilizer_schedule: every 2 weeks with diluted balanced fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Bird of Paradise (Strelitzia reginae)
+    - animal: cat
+      level: toxic
+      notes: soluble calcium oxalates in tubers; oral irritation
+    - animal: dog
+      level: toxic
+      notes: soluble calcium oxalates in tubers; oral irritation
+
+- scientific_name: Strelitzia reginae
   common_name: Bird of Paradise (Strelitzia reginae)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Strelitziaceae
+  origin: South Africa
+  description: >
+    Large architectural plant with paddle-shaped leaves and dramatic orange
+    and blue flowers resembling a tropical bird in flight.
   care:
     watering_days_min: 7
     watering_days_max: 10
-    light_level: bright-indirect
+    light_level: direct
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_max_c: 30
+    humidity_pct: "50-70"
+    fertilizer_schedule: every 2 weeks in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Birds Nest Fern (Asplenium nidus)
+    - animal: cat
+      level: toxic
+      notes: hydrocyanic acid in flowers and seeds
+    - animal: dog
+      level: toxic
+      notes: hydrocyanic acid in flowers and seeds
+
+- scientific_name: Asplenium nidus
   common_name: Birds Nest Fern (Asplenium nidus)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Aspleniaceae
+  origin: Tropical Asia and Australasia
+  description: >
+    Distinct fern that grows in a rosette with bright lime-green undivided
+    fronds emerging from a central nest-like crown.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "60-80"
+    fertilizer_schedule: monthly with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Boston Fern (Nephrolepis exaltata)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Nephrolepis exaltata
   common_name: Boston Fern (Nephrolepis exaltata)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Nephrolepidaceae
+  origin: Tropical Americas
+  description: >
+    Classic Victorian houseplant with arching feathery fronds. Prefers
+    consistent moisture and dislikes dry indoor air.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 3
+    watering_days_max: 5
+    light_level: medium-indirect
+    temperature_min_c: 16
+    temperature_max_c: 24
+    humidity_pct: "60-80"
+    fertilizer_schedule: monthly with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Calathea
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Calathea spp.
   common_name: Calathea
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Marantaceae
+  origin: Tropical Americas
+  description: >
+    Group of plants prized for boldly patterned leaves that fold up at
+    night (the "prayer plant" movement). Demanding about water quality.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "60-80"
+    fertilizer_schedule: monthly with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Cast Iron Plant (Aspidistra elatior)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Aspidistra elatior
   common_name: Cast Iron Plant (Aspidistra elatior)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: Eastern Asia
+  description: >
+    Aptly named for its tolerance of neglect, deep shade, and erratic
+    watering. Slow-growing with long dark-green strap-shaped leaves.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 10
+    watering_days_max: 21
+    light_level: low
+    temperature_min_c: 7
+    temperature_max_c: 29
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Chinese Money Plant (Pilea peperomioides)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Pilea peperomioides
   common_name: Chinese Money Plant (Pilea peperomioides)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Urticaceae
+  origin: Southwest China
+  description: >
+    Compact plant with round coin-shaped leaves on long petioles. Easily
+    propagated from the small pups it produces.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
-    temperature_min_c: 18
+    temperature_min_c: 13
     temperature_max_c: 27
-    humidity_pct: 40-60
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Chinese evergreen (Aglaonema)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Aglaonema spp.
   common_name: Chinese evergreen (Aglaonema)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araceae
+  origin: Tropical Asia
+  description: >
+    Reliable low-light houseplant with broad lance-shaped leaves often
+    marked with silver, cream, or pink variegation.
   care:
     watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_max: 14
+    light_level: low
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Christmas Cactus (Schlumbergera bridgesii)
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+
+- scientific_name: Schlumbergera bridgesii
   common_name: Christmas Cactus (Schlumbergera bridgesii)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Cactaceae
+  origin: Coastal mountains of southeastern Brazil
+  description: >
+    Epiphytic cactus with segmented stems that bloom in winter with pink,
+    red, or white tubular flowers. Forest cactus, not desert.
   care:
     watering_days_min: 7
-    watering_days_max: 10
+    watering_days_max: 14
     light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_min_c: 13
+    temperature_max_c: 24
+    humidity_pct: "50-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Chrysanthemum
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Chrysanthemum spp.
   common_name: Chrysanthemum
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asteraceae
+  origin: East Asia
+  description: >
+    Popular gift plant with daisy-like flowers in late autumn. Indoors,
+    it is best treated as a temporary display rather than a permanent
+    houseplant.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 3
+    watering_days_max: 5
     light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_min_c: 13
+    temperature_max_c: 21
+    humidity_pct: "40-60"
+    fertilizer_schedule: every 2 weeks while flowering
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Ctenanthe
+    - animal: cat
+      level: toxic
+      notes: sesquiterpene lactones and pyrethrins cause vomiting and dermatitis
+    - animal: dog
+      level: toxic
+      notes: sesquiterpene lactones and pyrethrins cause vomiting and dermatitis
+
+- scientific_name: Ctenanthe spp.
   common_name: Ctenanthe
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Marantaceae
+  origin: Brazil and Costa Rica
+  description: >
+    Close relative of Calathea with elongated leaves often patterned with
+    fishbone or zebra-stripe variegation. Shares the prayer-plant habit.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "60-80"
+    fertilizer_schedule: monthly with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Daffodils (Narcissus spp.)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Narcissus spp.
   common_name: Daffodils (Narcissus spp.)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Amaryllidaceae
+  origin: Europe and North Africa
+  description: >
+    Spring bulb with trumpet-shaped yellow or white flowers. Frequently
+    forced indoors for early flowering displays.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 3
+    watering_days_max: 5
+    light_level: direct
+    temperature_min_c: 4
+    temperature_max_c: 21
+    humidity_pct: "40-60"
+    fertilizer_schedule: not required during forcing
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Dracaena
+    - animal: cat
+      level: toxic
+      notes: alkaloid lycorine; bulbs particularly dangerous
+    - animal: dog
+      level: toxic
+      notes: alkaloid lycorine; bulbs particularly dangerous
+
+- scientific_name: Dracaena spp.
   common_name: Dracaena
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: Tropical Africa and Asia
+  description: >
+    Large genus of upright woody-stemmed plants with strap-like leaves,
+    often variegated. Includes corn plant, dragon tree, and lucky bamboo.
   care:
     watering_days_min: 7
-    watering_days_max: 10
+    watering_days_max: 14
     light_level: bright-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Dumb Cane (Dieffenbachia spp.)
+    - animal: cat
+      level: toxic
+      notes: saponins cause vomiting (sometimes with blood), depression, hypersalivation
+    - animal: dog
+      level: toxic
+      notes: saponins cause vomiting, depression, hypersalivation
+
+- scientific_name: Dieffenbachia spp.
   common_name: Dumb Cane (Dieffenbachia spp.)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araceae
+  origin: Tropical Americas
+  description: >
+    Large soft-stemmed plant with broad leaves heavily marked with cream
+    or yellow. Named for the temporary speech loss it can cause if chewed.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
+    humidity_pct: "50-70"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Elephant Ear (Alocasia spp.)
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals; severe oral irritation
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals; severe oral irritation
+
+- scientific_name: Alocasia spp.
   common_name: Elephant Ear (Alocasia spp.)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araceae
+  origin: Tropical Asia
+  description: >
+    Striking plant with large arrow-shaped leaves on tall petioles. The
+    species *Alocasia macrorrhizos* gives the genus its common name.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 5
+    watering_days_max: 7
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_max_c: 29
+    humidity_pct: "60-80"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown English Ivy (Hedera helix)
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+
+- scientific_name: Hedera helix
   common_name: English Ivy (Hedera helix)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araliaceae
+  origin: Europe and Western Asia
+  description: >
+    Evergreen climber with lobed leaves, often variegated. Tolerates cool
+    rooms and trains well over supports.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_min_c: 10
+    temperature_max_c: 21
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Hyacinth (Hyacinthus orientalis)
+    - animal: cat
+      level: toxic
+      notes: triterpenoid saponins (hederagenin) cause vomiting and diarrhea
+    - animal: dog
+      level: toxic
+      notes: triterpenoid saponins (hederagenin) cause vomiting and diarrhea
+
+- scientific_name: Hyacinthus orientalis
   common_name: Hyacinth (Hyacinthus orientalis)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: Eastern Mediterranean
+  description: >
+    Bulb famous for densely packed strongly fragrant flowers in spring.
+    Commonly forced indoors over winter.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 3
+    watering_days_max: 5
+    light_level: direct
+    temperature_min_c: 4
+    temperature_max_c: 21
+    humidity_pct: "40-60"
+    fertilizer_schedule: not required during forcing
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Iron Cross begonia (Begonia masoniana)
+    - animal: cat
+      level: toxic
+      notes: alkaloids and oxalic acid in bulbs; severe gastrointestinal effects
+    - animal: dog
+      level: toxic
+      notes: alkaloids and oxalic acid in bulbs; severe gastrointestinal effects
+
+- scientific_name: Begonia masoniana
   common_name: Iron Cross begonia (Begonia masoniana)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Begoniaceae
+  origin: Southern China and Vietnam
+  description: >
+    Rhizomatous begonia with puckered apple-green leaves bearing a
+    distinctive dark cross-shaped pattern in the centre.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 5
+    watering_days_max: 7
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_max_c: 24
+    humidity_pct: "50-70"
+    fertilizer_schedule: every 2 weeks with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Jade plant (Crassula ovata)
+    - animal: cat
+      level: toxic
+      notes: soluble calcium oxalates in tubers
+    - animal: dog
+      level: toxic
+      notes: soluble calcium oxalates in tubers
+
+- scientific_name: Crassula ovata
   common_name: Jade plant (Crassula ovata)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Crassulaceae
+  origin: Southern Africa
+  description: >
+    Succulent shrub with thick woody trunk and fleshy oval leaves. Long
+    lived and considered a symbol of prosperity in many cultures.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 14
+    watering_days_max: 21
+    light_level: direct
+    temperature_min_c: 13
+    temperature_max_c: 24
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Kalanchoe
+    - animal: cat
+      level: toxic
+      notes: unknown toxic principle; causes vomiting, depression, ataxia
+    - animal: dog
+      level: toxic
+      notes: unknown toxic principle; causes vomiting, depression, ataxia
+
+- scientific_name: Kalanchoe blossfeldiana
   common_name: Kalanchoe
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Crassulaceae
+  origin: Madagascar
+  description: >
+    Compact succulent with glossy scalloped leaves and long-lasting
+    clusters of small red, pink, orange, or yellow flowers.
   care:
     watering_days_min: 7
-    watering_days_max: 10
+    watering_days_max: 14
     light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_min_c: 15
+    temperature_max_c: 24
+    humidity_pct: "30-50"
+    fertilizer_schedule: monthly during active growth
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Lilium (Hemerocallis)
+    - animal: cat
+      level: toxic
+      notes: bufadienolide cardiac glycosides; can cause arrhythmia
+    - animal: dog
+      level: toxic
+      notes: bufadienolide cardiac glycosides; can cause arrhythmia
+
+- scientific_name: Hemerocallis spp.
   common_name: Lilium (Hemerocallis)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asphodelaceae
+  origin: Eastern Asia
+  description: >
+    Daylily — clumping perennial with strap-shaped leaves and trumpet
+    flowers that each last a single day. Often grown in containers indoors.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    watering_days_min: 3
+    watering_days_max: 5
+    light_level: direct
+    temperature_min_c: 5
+    temperature_max_c: 30
+    humidity_pct: "30-50"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Lily of the valley (Convallaria majalis)
+    - animal: cat
+      level: toxic
+      notes: severely toxic to cats — even small amounts can cause kidney failure
+    - animal: dog
+      level: mild
+      notes: gastrointestinal upset
+
+- scientific_name: Convallaria majalis
   common_name: Lily of the valley (Convallaria majalis)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: Europe and Asia
+  description: >
+    Spreading ground-cover with pairs of broad green leaves and sprays of
+    small bell-shaped fragrant white flowers in spring.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
+    temperature_min_c: 5
+    temperature_max_c: 21
+    humidity_pct: "40-60"
+    fertilizer_schedule: monthly during active growth
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Money Tree (Pachira aquatica)
+    - animal: cat
+      level: toxic
+      notes: cardiac glycosides can cause arrhythmia, seizures, death
+    - animal: dog
+      level: toxic
+      notes: cardiac glycosides can cause arrhythmia, seizures, death
+
+- scientific_name: Pachira aquatica
   common_name: Money Tree (Pachira aquatica)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Malvaceae
+  origin: Central and South America
+  description: >
+    Tropical tree with palmate leaves on a braided trunk in the
+    commercial form. Considered a symbol of good fortune.
   care:
     watering_days_min: 7
-    watering_days_max: 10
+    watering_days_max: 14
     light_level: bright-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "50-70"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Monstera Deliciosa (Monstera deliciosa)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Monstera deliciosa
   common_name: Monstera Deliciosa (Monstera deliciosa)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araceae
+  origin: Southern Mexico and Panama
+  description: >
+    Climbing aroid with dramatic fenestrated leaves. Thrives in bright
+    indirect light and rewards a moss pole with increasingly split foliage.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_max_c: 30
+    humidity_pct: "50-70"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Orchid
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+
+- scientific_name: Orchidaceae spp.
   common_name: Orchid
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Orchidaceae
+  origin: Worldwide tropics
+  description: >
+    Enormous family of flowering plants. Most houseplant orchids are
+    *Phalaenopsis* — the moth orchid — known for long-lasting blooms.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
-    temperature_min_c: 18
+    temperature_min_c: 16
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "50-70"
+    fertilizer_schedule: every 2 weeks with diluted orchid fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Parlor Palm (Chamaedorea elegans)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Chamaedorea elegans
   common_name: Parlor Palm (Chamaedorea elegans)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Arecaceae
+  origin: Mexico and Guatemala
+  description: >
+    Slow-growing dwarf palm tolerant of low light and dry indoor air.
+    A Victorian parlor staple still popular in offices.
   care:
     watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_max: 14
+    light_level: medium-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
+    humidity_pct: "40-60"
+    fertilizer_schedule: every 2 months in spring and summer
+  toxicity:
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Spathiphyllum wallisii
+  common_name: Peace lily
+  family: Araceae
+  origin: Tropical Americas
+  description: >
+    Shade-tolerant plant with glossy leaves and white spathe flowers.
+    Indicates thirst by dramatic wilting that recovers within hours of watering.
+  care:
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
+    temperature_min_c: 18
+    temperature_max_c: 30
+    humidity_pct: "50-70"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Poinsettia (Euphorbia pulcherrima)
+    - animal: cat
+      level: toxic
+      notes: calcium oxalate crystals cause oral irritation
+    - animal: dog
+      level: toxic
+      notes: calcium oxalate crystals cause oral irritation
+
+- scientific_name: Euphorbia pulcherrima
   common_name: Poinsettia (Euphorbia pulcherrima)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Euphorbiaceae
+  origin: Mexico and Central America
+  description: >
+    Holiday plant famous for its red bracts (modified leaves) surrounding
+    small yellow flowers. Bracts also come in white and pink cultivars.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 5
+    watering_days_max: 7
     light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_min_c: 16
+    temperature_max_c: 21
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Polka Dot Plant (Hypoestes phyllostachya)
+    - animal: cat
+      level: mild
+      notes: white milky sap can cause mild oral and gastric irritation
+    - animal: dog
+      level: mild
+      notes: white milky sap can cause mild oral and gastric irritation
+
+- scientific_name: Hypoestes phyllostachya
   common_name: Polka Dot Plant (Hypoestes phyllostachya)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Acanthaceae
+  origin: Madagascar
+  description: >
+    Compact bushy plant with green leaves heavily spotted in pink, red,
+    or white. Pinch tips to encourage branching.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 3
+    watering_days_max: 5
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_max_c: 24
+    humidity_pct: "50-70"
+    fertilizer_schedule: monthly with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Ponytail Palm (Beaucarnea recurvata)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Beaucarnea recurvata
   common_name: Ponytail Palm (Beaucarnea recurvata)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: Eastern Mexico
+  description: >
+    Not actually a palm but a succulent with a bulbous water-storing
+    trunk and a cascading tuft of narrow strap-like leaves.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
+    watering_days_min: 14
+    watering_days_max: 21
+    light_level: direct
+    temperature_min_c: 16
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Pothos (Ivy arum)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Epipremnum aureum
   common_name: Pothos (Ivy arum)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araceae
+  origin: Solomon Islands
+  description: >
+    Trailing vine with heart-shaped, often variegated leaves. One of the
+    easiest houseplants to grow and tolerates low light.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_max_c: 30
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Prayer Plant (Maranta leuconeura)
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+
+- scientific_name: Maranta leuconeura
   common_name: Prayer Plant (Maranta leuconeura)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Marantaceae
+  origin: Brazil
+  description: >
+    Trailing plant whose striking patterned leaves fold upward at night
+    as if in prayer. Famously difficult about water quality.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "60-80"
+    fertilizer_schedule: monthly with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Rattlesnake Plant (Calathea lancifolia)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Calathea lancifolia
   common_name: Rattlesnake Plant (Calathea lancifolia)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Marantaceae
+  origin: Brazil
+  description: >
+    Calathea with long narrow wavy-edged leaves marked with dark green
+    blotches that recall snake scales.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_min: 5
+    watering_days_max: 7
+    light_level: medium-indirect
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "60-80"
+    fertilizer_schedule: monthly with diluted fertilizer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Rubber Plant (Ficus elastica)
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Ficus elastica
   common_name: Rubber Plant (Ficus elastica)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Moraceae
+  origin: South and Southeast Asia
+  description: >
+    Tree with thick glossy oval leaves, sometimes burgundy or variegated.
+    Latex sap is irritating and historically used to produce rubber.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
-    temperature_min_c: 18
+    temperature_min_c: 16
     temperature_max_c: 27
-    humidity_pct: 40-60
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Sago Palm (Cycas revoluta)
+    - animal: cat
+      level: mild
+      notes: milky latex sap causes skin and oral irritation
+    - animal: dog
+      level: mild
+      notes: milky latex sap causes skin and oral irritation
+
+- scientific_name: Cycas revoluta
   common_name: Sago Palm (Cycas revoluta)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Cycadaceae
+  origin: Southern Japan and southeastern China
+  description: >
+    Not a palm but an ancient cycad with a stout trunk and a crown of
+    stiff feather-like fronds. Extremely toxic to pets.
   care:
     watering_days_min: 7
-    watering_days_max: 10
+    watering_days_max: 14
     light_level: bright-indirect
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_max_c: 29
+    humidity_pct: "40-60"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Schefflera
+    - animal: cat
+      level: toxic
+      notes: cycasin is severely hepatotoxic — emergency veterinary care required
+    - animal: dog
+      level: toxic
+      notes: cycasin is severely hepatotoxic — emergency veterinary care required
+
+- scientific_name: Schefflera spp.
   common_name: Schefflera
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araliaceae
+  origin: Tropical Asia and Pacific
+  description: >
+    Upright shrub or small tree with palmate compound leaves arranged
+    like the spokes of an umbrella. Tolerates a wide range of indoor conditions.
   care:
     watering_days_min: 7
     watering_days_max: 10
     light_level: bright-indirect
-    temperature_min_c: 18
+    temperature_min_c: 16
     temperature_max_c: 27
-    humidity_pct: 40-60
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Snake plant (Sanseviera)
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals; saponins
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals; saponins
+
+- scientific_name: Sansevieria trifasciata
   common_name: Snake plant (Sanseviera)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: West Africa
+  description: >
+    Hardy succulent with upright sword-shaped leaves marked with horizontal
+    bands. Tolerates neglect and low light.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
+    watering_days_min: 14
+    watering_days_max: 28
+    light_level: low
+    temperature_min_c: 13
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2-3 months
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Tradescantia
+    - animal: cat
+      level: toxic
+      notes: saponins cause drooling and gastrointestinal upset
+    - animal: dog
+      level: toxic
+      notes: saponins cause drooling and gastrointestinal upset
+
+- scientific_name: Tradescantia spp.
   common_name: Tradescantia
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Commelinaceae
+  origin: Americas
+  description: >
+    Vigorous trailing plant with thick fleshy striped leaves in green,
+    purple, white, and pink. Roots readily from any cutting.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
+    watering_days_min: 5
+    watering_days_max: 7
     light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
+    temperature_min_c: 13
+    temperature_max_c: 24
+    humidity_pct: "40-60"
     fertilizer_schedule: monthly in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Tulip
+    - animal: cat
+      level: mild
+      notes: sap can cause skin and oral irritation, dermatitis
+    - animal: dog
+      level: mild
+      notes: sap can cause skin and oral irritation, dermatitis
+
+- scientific_name: Tulipa spp.
   common_name: Tulip
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Liliaceae
+  origin: Central Asia and Iran
+  description: >
+    Spring bulb with cup-shaped flowers in every color except true blue.
+    Often forced indoors over winter for early displays.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 3
+    watering_days_max: 5
+    light_level: direct
+    temperature_min_c: 5
+    temperature_max_c: 21
+    humidity_pct: "40-60"
+    fertilizer_schedule: not required during forcing
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Venus Flytrap
+    - animal: cat
+      level: toxic
+      notes: tulipalin A and B; bulbs are most toxic
+    - animal: dog
+      level: toxic
+      notes: tulipalin A and B; bulbs are most toxic
+
+- scientific_name: Dionaea muscipula
   common_name: Venus Flytrap
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Droseraceae
+  origin: Subtropical wetlands of North and South Carolina, USA
+  description: >
+    Carnivorous plant with hinged trap-like leaves that snap shut on
+    insects. Requires distilled or rain water — never tap.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_min: 1
+    watering_days_max: 2
+    light_level: direct
     temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    temperature_max_c: 29
+    humidity_pct: "50-70"
+    fertilizer_schedule: not required — catches its own insects
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown Yucca
+    - animal: cat
+      level: safe
+    - animal: dog
+      level: safe
+
+- scientific_name: Yucca spp.
   common_name: Yucca
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Asparagaceae
+  origin: Arid Americas
+  description: >
+    Architectural plant with a thick woody trunk and a top of stiff
+    sword-shaped leaves. Tolerates considerable neglect.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
-    temperature_min_c: 18
-    temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    watering_days_min: 14
+    watering_days_max: 21
+    light_level: direct
+    temperature_min_c: 10
+    temperature_max_c: 30
+    humidity_pct: "30-50"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
-- scientific_name: Unknown ZZ Plant (Zamioculcas zamiifolia)
+    - animal: cat
+      level: toxic
+      notes: steroidal saponins cause vomiting, depression, hypersalivation
+    - animal: dog
+      level: toxic
+      notes: steroidal saponins cause vomiting, depression, hypersalivation
+
+- scientific_name: Zamioculcas zamiifolia
   common_name: ZZ Plant (Zamioculcas zamiifolia)
-  family: null
-  origin: null
-  description: Placeholder entry — please curate.
-  image_url: null
+  family: Araceae
+  origin: Eastern Africa
+  description: >
+    Glossy dark-green pinnate leaves emerge from thick water-storing
+    rhizomes. One of the most drought- and shade-tolerant houseplants.
   care:
-    watering_days_min: 7
-    watering_days_max: 10
-    light_level: bright-indirect
+    watering_days_min: 14
+    watering_days_max: 21
+    light_level: low
     temperature_min_c: 18
     temperature_max_c: 27
-    humidity_pct: 40-60
-    fertilizer_schedule: monthly in spring and summer
+    humidity_pct: "40-60"
+    fertilizer_schedule: every 2 months in spring and summer
   toxicity:
-  - animal: cat
-    level: safe
-    notes: null
-  - animal: dog
-    level: safe
-    notes: null
+    - animal: cat
+      level: toxic
+      notes: insoluble calcium oxalate crystals
+    - animal: dog
+      level: toxic
+      notes: insoluble calcium oxalate crystals
