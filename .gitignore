@@ -60,3 +60,4 @@ secrets/
 # Logs
 logs/
 *.log
+/.dev-logs/
