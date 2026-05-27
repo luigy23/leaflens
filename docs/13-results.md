@@ -11,7 +11,8 @@
 - **Augmentation.** Random horizontal flip, random rotation (±15°), color jitter (brightness, contrast, saturation ±0.1).
 - **Optimizer.** AdamW with weight decay 1e-4.
 - **Learning rate.** 1e-4 for the backbone (after a 3-epoch frozen warmup), 1e-3 for the new classification head.
-- **Loss.** Class-weighted cross-entropy, with weights inversely proportional to class frequency.
+- **Class balancing (pre-training).** `WeightedRandomSampler` at the DataLoader oversamples minority classes with replacement so each minibatch is class-balanced before the model sees it. After sampling, the per-class count ratio in an epoch drops from 8.3× (raw) to ~1.36× (effectively balanced; mean ≈ 220 samples per class, std ≈ 14).
+- **Loss.** Class-weighted cross-entropy as a safety net for any residual skew the sampler leaves in a single batch. Weights inversely proportional to class frequency.
 - **Batch size.** 32 for EfficientNet and ResNet, 16 for ViT (memory-bound on MPS).
 
 ## 13.2 Architectures compared

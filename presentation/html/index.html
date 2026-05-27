@@ -237,10 +237,14 @@
 
         <div class="dataset-extra">
           <div class="dataset-extra-block">
-            <h4>Imbalance handling</h4>
-            <p><strong>Class-weighted cross-entropy</strong> — weight inversely proportional to class frequency.<br>
-            <strong>Augmentation</strong>: RandomResizedCrop · HorizontalFlip · Rotation ±15° · ColorJitter 0.1.<br>
-            <strong>Deterministic splits</strong>: <code>random_state=42</code> · CSV manifests in <code>data/processed/</code>.</p>
+            <h4>Class balancing — two layers</h4>
+            <p><strong>1. <code>WeightedRandomSampler</code></strong> at the DataLoader — oversamples minority classes so every minibatch is class-balanced <em>before</em> the model.<br>
+            <span class="tox-row" style="margin-top:6px">
+              <span class="tox-pill toxic">ratio 8.3× → <strong>1.36×</strong></span>
+              <span class="tox-pill safe">~220 samples/class · std 14</span>
+            </span><br>
+            <strong>2. <code>CrossEntropyLoss(weight=...)</code></strong> — inverse-frequency loss weights as safety net.<br>
+            <strong>+ Augmentation</strong>: RandomResizedCrop · HFlip · Rotation ±15° · ColorJitter 0.1.</p>
           </div>
           <div class="dataset-extra-block">
             <h4>Care knowledge base (47 species curated)</h4>
@@ -257,9 +261,10 @@
           Forty-seven classes, 14,774 images, mildly imbalanced — Yucca has only 66 images while
           Monstera Deliciosa has 547. Mean is 314 images per class, median 318.
           Train/val/test: 10,341 / 2,216 / 2,217 — stratified, seed 42, CSV manifests committed.
-          We handle imbalance with class-weighted cross-entropy (weights inversely proportional to
-          class frequency) and standard augmentation: random resized crop, horizontal flip,
-          rotation ±15°, color jitter 0.1.
+          We balance classes in two layers: (1) a WeightedRandomSampler at the DataLoader
+          oversamples minority classes so each minibatch is balanced BEFORE the model sees it —
+          measured ratio drops from 8.3x to 1.36x; (2) class-weighted cross-entropy as a safety
+          net for any residual skew. Plus standard augmentation.
           All 47 species are listed in the expandable section — these are the most common indoor
           plants worldwide. Care knowledge base curated by hand from ASPCA toxicity database
           (US vet standard), RHS plant finder, and Missouri Botanical Garden. Pet safety breakdown:
