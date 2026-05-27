@@ -491,6 +491,111 @@
 .tox-pill.mild { color: #B07A1F; border-color: rgba(176, 122, 31, 0.35); }
 .tox-pill.toxic { color: var(--amber); border-color: rgba(184, 80, 66, 0.35); }
 
+/* Split pills row */
+.split-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 12px 0 14px;
+  justify-content: center;
+}
+.split-pill {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.split-pill strong {
+  color: var(--forest);
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+/* Distribution block: stats + chart side by side */
+.distribution-block {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 16px;
+  align-items: center;
+  margin: 4px 0 14px;
+  padding: 12px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.dist-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.dist-stats > div {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.dist-label {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 9px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.dist-val {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1;
+}
+.dist-name {
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.bars.compact .bar {
+  grid-template-columns: 110px 1fr 36px !important;
+  gap: 6px;
+}
+.bars.compact .lbl, .bars.compact .val {
+  font-size: 10px;
+}
+.bars.compact .track { height: 12px; }
+
+/* All-47 species expandable */
+.all-species {
+  margin: 6px 0 14px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.all-species summary {
+  cursor: pointer;
+  padding: 8px 14px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  color: var(--forest);
+  font-weight: 600;
+  user-select: none;
+}
+.all-species[open] summary { border-bottom: 1px solid var(--line); }
+.species-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px 10px;
+  padding: 10px 14px;
+}
+.species-grid span {
+  font-size: 11px;
+  color: var(--ink-soft);
+  padding: 2px 0;
+}
+
 /* ============================================================
    Slide 6 — Architectures
    ============================================================ */
