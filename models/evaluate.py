@@ -1,6 +1,16 @@
 """Evaluate a trained checkpoint on the test set.
 
 Outputs to stdout and writes a JSON report next to the checkpoint.
+
+═══════════════════════════════════════════════════════════════════════════
+  PIPELINE — sigue PASO 1 .. PASO 5
+═══════════════════════════════════════════════════════════════════════════
+  PASO 1 — Cargar el checkpoint entrenado (.pt) y la lista de clases
+  PASO 2 — Construir el DataLoader del TEST set (sin shuffle, sin sampler)
+  PASO 3 — Recrear el modelo y cargar pesos · inferencia sin gradientes
+  PASO 4 — Calcular métricas: top-1, top-3, Macro F1, Weighted F1
+  PASO 5 — Imprimir reporte por clase + guardar JSON con confusion matrix
+═══════════════════════════════════════════════════════════════════════════
 """
 
 from __future__ import annotations
@@ -42,6 +52,10 @@ def main() -> int:
     parser.add_argument("--batch-size", type=int, default=32)
     args = parser.parse_args()
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 1 — Cargar el checkpoint entrenado y la lista de clases
+    # ═══════════════════════════════════════════════════════════════════════
+    # El checkpoint guarda: arch, state_dict, class_names, val_acc, epoch.
     ckpt_path = Path(args.checkpoint) if args.checkpoint else CKPT_DIR / f"{args.arch}_best.pt"
     if not ckpt_path.exists():
         raise SystemExit(f"checkpoint not found: {ckpt_path}")
@@ -53,27 +67,43 @@ def main() -> int:
     device = pick_device()
     print(f"Device: {device}")
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 2 — DataLoader del TEST set (test.csv, nunca visto en training)
+    # ═══════════════════════════════════════════════════════════════════════
+    # IMPORTANTE: usa transforms DETERMINISTAS (sin augmentation) — solo
+    # resize + center crop + normalize. No usa sampler ni shuffle.
     test_ds = PlantImageDataset(
         PROCESSED / "test.csv", REPO_ROOT, transform=build_transforms(training=False)
     )
     test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=2)
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 3 — Recrear modelo, cargar pesos, inferencia sin gradientes
+    # ═══════════════════════════════════════════════════════════════════════
     model = build_model(args.arch, num_classes=num_classes)
     model.load_state_dict(payload["state_dict"])
-    model.to(device).eval()
+    model.to(device).eval()                              # eval() desactiva dropout y batchnorm-stats updates
 
     all_logits: list[np.ndarray] = []
     all_labels: list[int] = []
-    with torch.no_grad():
+    with torch.no_grad():                                # no_grad → ahorra memoria, infiere más rápido
         for images, labels in test_loader:
             images = images.to(device)
-            logits = model(images).cpu().numpy()
+            logits = model(images).cpu().numpy()         # logits = scores antes de softmax
             all_logits.append(logits)
             all_labels.extend(labels.tolist())
 
     logits_np = np.concatenate(all_logits)
-    preds = logits_np.argmax(axis=1)
+    preds = logits_np.argmax(axis=1)                     # top-1 predicción = índice del logit máximo
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 4 — Calcular métricas
+    # ═══════════════════════════════════════════════════════════════════════
+    # top-1: % de aciertos exactos en la predicción más confiada
+    # top-3: % donde la clase correcta está en las 3 más probables
+    # macro f1: F1 promediada SIN ponderar por tamaño de clase (justo con minoritarias)
+    # weighted f1: F1 ponderada por # de muestras (refleja accuracy global)
+    # → Si macro ≈ weighted, significa que el balanceo funcionó.
     top1 = float((preds == np.array(all_labels)).mean())
     top3 = float(top_k_accuracy_score(all_labels, logits_np, k=3, labels=list(range(num_classes))))
     macro_f1 = float(f1_score(all_labels, preds, average="macro"))
@@ -85,8 +115,13 @@ def main() -> int:
     print(f"weighted f1: {weighted_f1:.4f}")
     print(classification_report(all_labels, preds, target_names=class_names, zero_division=0))
 
+    # Confusion matrix 47×47 — útil para ver qué clases se confunden entre sí.
     cm = confusion_matrix(all_labels, preds, labels=list(range(num_classes)))
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 5 — Guardar reporte JSON con todas las métricas
+    # ═══════════════════════════════════════════════════════════════════════
+    # El archivo *.eval.json queda al lado del checkpoint para auditoría.
     report = {
         "checkpoint": str(ckpt_path.relative_to(REPO_ROOT)),
         "arch": args.arch,

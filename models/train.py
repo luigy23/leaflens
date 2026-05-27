@@ -4,6 +4,19 @@ Usage:
     python -m models.train --arch efficientnet --epochs 30
     python -m models.train --arch resnet50    --epochs 30
     python -m models.train --arch vit         --epochs 20
+
+═══════════════════════════════════════════════════════════════════════════
+  PIPELINE — sigue los marcadores PASO 1 .. PASO 8 al recorrer el archivo
+═══════════════════════════════════════════════════════════════════════════
+  PASO 1 — Cargar manifests CSV (train/val) con seed 42 → reproducibilidad
+  PASO 2 — Construir Datasets PyTorch con transforms + augmentation
+  PASO 3 — BALANCEO DE CLASES con WeightedRandomSampler (antes del modelo)
+  PASO 4 — DataLoaders (train usa sampler, val usa shuffle=False)
+  PASO 5 — Construir modelo (transfer learning desde ImageNet)
+  PASO 6 — Loss class-weighted + optimizador AdamW
+  PASO 7 — Loop de entrenamiento: warm-up congelado → differential LR
+  PASO 8 — Validar cada epoch · guardar mejor checkpoint · early stopping
+═══════════════════════════════════════════════════════════════════════════
 """
 
 from __future__ import annotations
@@ -113,6 +126,17 @@ def main() -> int:
     device = pick_device()
     print(f"Using device: {device}")
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 1 — Cargar los manifests CSV de los splits 70/15/15
+    # ═══════════════════════════════════════════════════════════════════════
+    # Los CSV fueron generados por scripts/split_data.py con random_state=42.
+    # Esto garantiza que cada corrida ve los mismos archivos en train/val/test.
+    #
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 2 — Construir Datasets PyTorch con transforms + augmentation
+    # ═══════════════════════════════════════════════════════════════════════
+    # train usa augmentation (random crop, flip, rotation, color jitter).
+    # val usa transforms determinísticas (center crop, sin augmentation).
     train_ds = PlantImageDataset(
         PROCESSED / "train.csv", REPO_ROOT, transform=build_transforms(training=True)
     )
@@ -123,16 +147,26 @@ def main() -> int:
     num_classes = train_ds.num_classes
     print(f"Classes: {num_classes}, train: {len(train_ds)}, val: {len(val_ds)}")
 
-    # ─── Class balancing BEFORE the model sees the data ───────────────────
-    # WeightedRandomSampler oversamples minority classes so each minibatch is
-    # approximately class-balanced. This corrects the dataset's skew at the
-    # DataLoader level, before any forward pass.
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 3 — BALANCEO DE CLASES con WeightedRandomSampler
+    #            (esto sucede ANTES de que el modelo vea cualquier dato)
+    # ═══════════════════════════════════════════════════════════════════════
+    # El dataset es desbalanceado: Yucca tiene 66 imágenes, Monstera 547 (8.3×).
+    # build_balanced_sampler() asigna a cada muestra un peso inversamente
+    # proporcional a la frecuencia de su clase. PyTorch usa esos pesos para
+    # SOBREMUESTREAR clases minoritarias dentro de cada batch.
+    # Verificado: ratio max/min cae de 8.3× a 1.36× después del sampling.
     train_sampler = build_balanced_sampler(train_ds, num_classes)
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 4 — DataLoaders
+    # ═══════════════════════════════════════════════════════════════════════
+    # train_loader recibe el sampler (no shuffle=True; son mutuamente excluyentes).
+    # val_loader usa el orden original (sin sampler, sin shuffle).
     train_loader = DataLoader(
         train_ds,
         batch_size=args.batch_size if args.arch != "vit" else 16,
-        sampler=train_sampler,        # ← mutually exclusive with shuffle=True
+        sampler=train_sampler,        # ← oversamplea minoritarias por batch
         num_workers=args.num_workers,
         pin_memory=(device.type == "cuda"),
     )
@@ -144,14 +178,24 @@ def main() -> int:
         pin_memory=(device.type == "cuda"),
     )
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 5 — Construir el modelo con TRANSFER LEARNING
+    # ═══════════════════════════════════════════════════════════════════════
+    # build_model() carga pesos preentrenados de ImageNet y reemplaza la
+    # cabeza por una capa lineal nueva de num_classes (47) salidas.
+    # freeze_backbone() congela todo excepto la cabeza para el warm-up.
     model = build_model(args.arch, num_classes=num_classes).to(device)
     freeze_backbone(model, args.arch)
 
-    # Belt-and-suspenders: a class-weighted CE loss compensates any residual
-    # skew the sampler leaves in a single batch.
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 6 — Loss (class-weighted) + Optimizador AdamW
+    # ═══════════════════════════════════════════════════════════════════════
+    # Segunda capa de balanceo (belt-and-suspenders): aún si el sampler
+    # deja un batch ligeramente sesgado, los pesos del loss compensan.
     class_weights = class_weights_from_manifest(PROCESSED / "train.csv", num_classes).to(device)
     criterion = nn.CrossEntropyLoss(weight=class_weights)
 
+    # Solo la cabeza tiene gradientes durante el warm-up.
     head_params = [p for p in model.parameters() if p.requires_grad]
     optimizer = torch.optim.AdamW(head_params, lr=args.lr_head, weight_decay=1e-4)
 
@@ -159,6 +203,14 @@ def main() -> int:
     epochs_without_improvement = 0
     history = []
 
+    # ═══════════════════════════════════════════════════════════════════════
+    #  PASO 7 — Loop de entrenamiento (warm-up + unfreeze + differential LR)
+    # ═══════════════════════════════════════════════════════════════════════
+    # Estrategia en dos fases:
+    #   • Fase A (primeras `freeze_epochs` epochs): solo entrena la cabeza
+    #     con learning rate alto (lr_head = 1e-3) — la cabeza converge rápido.
+    #   • Fase B (resto de epochs): unfreeze del backbone, optimizador
+    #     dual con lr_backbone = 1e-4 (lento, fino-tuning) + lr_head = 1e-3.
     for epoch in range(1, args.epochs + 1):
         if epoch == args.freeze_epochs + 1:
             print("Unfreezing backbone, switching to differential learning rates...")
@@ -172,6 +224,7 @@ def main() -> int:
                 weight_decay=1e-4,
             )
 
+        # ── Train one epoch ──
         model.train()
         epoch_start = time.time()
         running_loss = 0.0
@@ -188,6 +241,9 @@ def main() -> int:
             running_total += images.size(0)
         train_loss = running_loss / running_total
 
+        # ═══════════════════════════════════════════════════════════════════
+        #  PASO 8 — Validación + checkpoint del mejor + early stopping
+        # ═══════════════════════════════════════════════════════════════════
         val_loss, val_acc = evaluate(model, val_loader, device)
         elapsed = time.time() - epoch_start
         print(
@@ -204,6 +260,7 @@ def main() -> int:
             }
         )
 
+        # Guarda solo si superó el mejor val_acc visto hasta ahora.
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             epochs_without_improvement = 0
@@ -221,6 +278,7 @@ def main() -> int:
             print(f"  ↳ new best val_acc={val_acc:.4f} saved to {ckpt_path}")
         else:
             epochs_without_improvement += 1
+            # Early stopping: si N epochs seguidos sin mejorar, corta.
             if epochs_without_improvement >= args.patience:
                 print(f"Early stopping at epoch {epoch} (no improvement for {args.patience} epochs).")
                 break
