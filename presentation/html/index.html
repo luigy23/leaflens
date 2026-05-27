@@ -204,11 +204,34 @@
 
         <p class="caption-muted">Stratified sampling with <code>random_state=42</code> — splits are reproducible from CSV manifests.</p>
 
+        <div class="dataset-extra">
+          <div class="dataset-extra-block">
+            <h4>Sample of the 47 species</h4>
+            <p>Aloe Vera · Anthurium · Areca Palm · Bird of Paradise · Boston Fern · Calathea ·
+            Christmas Cactus · Dracaena · Dumb Cane · Elephant Ear · English Ivy · Fiddle Leaf Fig ·
+            Jade Plant · Kalanchoe · Monstera · Money Tree · Orchid · Parlor Palm · Peace Lily ·
+            Poinsettia · Pothos · Prayer Plant · Rubber Plant · Sago Palm · Snake Plant · Tulip ·
+            Venus Flytrap · ZZ Plant <em>… and 19 more.</em></p>
+          </div>
+          <div class="dataset-extra-block">
+            <h4>Care knowledge base (47 species curated)</h4>
+            <p>47 care profiles · 94 toxicity records · sourced from ASPCA + RHS + Missouri Botanical Garden</p>
+            <div class="tox-row">
+              <span class="tox-pill safe"><strong>34</strong> pet-safe</span>
+              <span class="tox-pill mild"><strong>7</strong> mildly toxic</span>
+              <span class="tox-pill toxic"><strong>53</strong> toxic records</span>
+            </div>
+          </div>
+        </div>
+
         <aside class="notes">
           Forty-seven classes, fifteen thousand images, mildly imbalanced — Yucca only has 66 images,
           Anthurium has 454. We handle that with class-weighted loss and augmentation. Splits are
           deterministic — same seed gives the same partition. Manifests live in CSV files so anyone
           can reproduce.
+          The 47 classes cover the most common indoor plants. Care knowledge base curated by hand
+          from ASPCA toxicity database (US vet standard), RHS plant finder, and Missouri Botanical Garden.
+          Pet safety breakdown: 34 safe, 7 mild, 53 toxic records across cats and dogs (94 total).
         </aside>
       </section>
 
