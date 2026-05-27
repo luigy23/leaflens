@@ -66,31 +66,60 @@ The full 47×47 confusion matrix of the selected model is included as `models/ch
 
 Box-plot of per-class recall to be inserted from `notebooks/evaluation.ipynb`.
 
-## 13.4 Hyperparameter tuning
+## 13.4 Hyperparameters and search space
 
-A small Hyperband search using `keras-tuner` (port to PyTorch via `optuna` if time allows) was run on the EfficientNet-B0 baseline. Search space:
+We deliberately did not run a formal automated search. The training budget
+(M4 Air, MPS, ≤ 1 GPU-hour per architecture) made an exhaustive Hyperband
+or Bayesian sweep impractical at this scale. Instead, we chose conservative
+defaults grounded in published practice for transfer learning on small
+image datasets, and treated the comparison of the **three architectures**
+as our primary "search" axis.
 
-| Hyperparameter | Range |
+The defaults actually used (frozen by `argparse` defaults in
+`models/train.py`):
+
+| Hyperparameter | Value | Justification |
+|---|---|---|
+| Backbone learning rate | 1e-4 | Standard fine-tuning rate; 10× smaller than head |
+| Head learning rate | 1e-3 | Newly-initialized head can absorb larger updates |
+| Weight decay | 1e-4 | AdamW default; light L2 regularization |
+| Batch size | 32 (16 for ViT) | Memory-bound on 16 GB MPS |
+| Image size | 224 × 224 | Native to ImageNet-pretrained backbones |
+| Freeze epochs | 3 | Warm-up: head converges before backbone unlocks |
+| Epoch cap | 15 (12 for ViT) | Empirical: val acc plateaus before this |
+| Early-stopping patience | 5 | Halt if no val improvement for 5 consecutive epochs |
+| Augmentation | RandomResizedCrop · HFlip · Rotation ±15° · ColorJitter 0.1 | Standard for natural images |
+
+The candidate search space that *would* be explored in a follow-up
+Hyperband / Optuna run is documented for reference:
+
+| Hyperparameter | Candidate range |
 |---|---|
 | Backbone learning rate | {1e-5, 3e-5, 1e-4, 3e-4} |
-| Head learning rate | {1e-4, 1e-3} |
+| Head learning rate | {1e-4, 1e-3, 3e-3} |
 | Weight decay | {0, 1e-4, 1e-3} |
 | Dropout in head | {0.0, 0.2, 0.5} |
+| Augmentation strength | {light, medium, strong} |
 
-Best configuration (to be filled): _e.g. lr_backbone=1e-4, lr_head=1e-3, wd=1e-4, dropout=0.2_.
+This is listed in `docs/14-future-work.md` as the first concrete next step.
 
-## 13.5 Cross-validation (sanity check)
+## 13.5 Cross-validation strategy
 
-Beyond the fixed 70/15/15 split, a 5-fold stratified cross-validation was performed on the train+val pool for the best model. Mean and standard deviation of validation accuracy are reported to confirm that the headline number is not an artifact of one favorable split.
+We used **stratified hold-out cross-validation** with a 70/15/15 split
+rather than k-fold CV. The justification is twofold:
 
-| Fold | Val acc |
-|---|---|
-| 1 | _ |
-| 2 | _ |
-| 3 | _ |
-| 4 | _ |
-| 5 | _ |
-| Mean ± std | _ |
+1. The dataset is large enough (~14k images, mean ≈ 314 per class) that
+   a single held-out test set of 2,217 images is a low-variance estimator
+   of generalization. K-fold would have multiplied the training cost by
+   the number of folds for a small gain in metric variance reduction.
+2. Holding out a **fixed** test set across all three architectures means
+   the comparison is apples-to-apples — each model is evaluated on the
+   exact same 2,217 images, ruling out split luck as an explanation for
+   any ranking difference.
+
+A 5-fold stratified CV pass on the final architecture is listed in
+section 14 (Future Work) as a sanity check we would run to put error
+bars on the headline numbers.
 
 ## 13.6 Qualitative results
 
