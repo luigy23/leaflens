@@ -175,7 +175,7 @@
 
       <!-- =============== SLIDE 5 — Dataset =============== -->
       <section>
-        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Kaggle House Plant Species</span></header>
+        <header class="topbar"><span class="leaf-mark"></span><span>LeafLens</span><span class="kicker">Kaggle House Plant Species · kacpergregorowicz</span></header>
         <h2>Dataset</h2>
 
         <div class="grid grid-3 stats">
@@ -189,33 +189,62 @@
           </article>
           <article class="stat-card">
             <div class="value">70/15/15</div>
-            <div class="label">stratified train / val / test</div>
+            <div class="label">stratified split · seed 42</div>
           </article>
         </div>
 
-        <p class="chart-title">Class size distribution (5 of 47 classes)</p>
-        <div class="bars">
-          <div class="bar"><span class="lbl">Yucca</span>        <div class="track"><div class="fill" style="--w: 14%"></div></div><span class="val">66</span></div>
-          <div class="bar"><span class="lbl">Asparagus Fern</span><div class="track"><div class="fill" style="--w: 37%"></div></div><span class="val">169</span></div>
-          <div class="bar"><span class="lbl">Aloe Vera</span>     <div class="track"><div class="fill" style="--w: 55%"></div></div><span class="val">251</span></div>
-          <div class="bar"><span class="lbl">Tradescantia</span>  <div class="track"><div class="fill" style="--w: 75%"></div></div><span class="val">341</span></div>
-          <div class="bar"><span class="lbl">Anthurium</span>     <div class="track"><div class="fill" style="--w: 100%"></div></div><span class="val">454</span></div>
+        <div class="split-row">
+          <span class="split-pill"><strong>10,341</strong> train</span>
+          <span class="split-pill"><strong>2,216</strong> validation</span>
+          <span class="split-pill"><strong>2,217</strong> test</span>
+          <span class="split-pill"><strong>224×224</strong> input size</span>
+          <span class="split-pill"><strong>JPG / PNG / WebP</strong></span>
         </div>
 
-        <p class="caption-muted">Stratified sampling with <code>random_state=42</code> — splits are reproducible from CSV manifests.</p>
+        <div class="distribution-block">
+          <div class="dist-stats">
+            <div><span class="dist-label">min</span><span class="dist-val">66</span><span class="dist-name">Yucca</span></div>
+            <div><span class="dist-label">median</span><span class="dist-val">318</span><span class="dist-name">Hyacinth</span></div>
+            <div><span class="dist-label">mean</span><span class="dist-val">314</span><span class="dist-name">images / class</span></div>
+            <div><span class="dist-label">max</span><span class="dist-val">547</span><span class="dist-name">Monstera</span></div>
+          </div>
+          <div class="bars compact">
+            <div class="bar"><span class="lbl">Yucca</span><div class="track"><div class="fill" style="--w: 12%"></div></div><span class="val">66</span></div>
+            <div class="bar"><span class="lbl">Asparagus Fern</span><div class="track"><div class="fill" style="--w: 31%"></div></div><span class="val">169</span></div>
+            <div class="bar"><span class="lbl">Hyacinth</span><div class="track"><div class="fill" style="--w: 58%"></div></div><span class="val">318</span></div>
+            <div class="bar"><span class="lbl">Lilium</span><div class="track"><div class="fill" style="--w: 88%"></div></div><span class="val">479</span></div>
+            <div class="bar"><span class="lbl">Monstera</span><div class="track"><div class="fill" style="--w: 100%"></div></div><span class="val">547</span></div>
+          </div>
+        </div>
+
+        <details class="all-species">
+          <summary>All 47 species (click to expand)</summary>
+          <div class="species-grid">
+            <span>African Violet</span><span>Aloe Vera</span><span>Anthurium</span><span>Areca Palm</span>
+            <span>Asparagus Fern</span><span>Begonia</span><span>Bird of Paradise</span><span>Birds Nest Fern</span>
+            <span>Boston Fern</span><span>Calathea</span><span>Cast Iron Plant</span><span>Chinese Money Plant</span>
+            <span>Chinese Evergreen</span><span>Christmas Cactus</span><span>Chrysanthemum</span><span>Ctenanthe</span>
+            <span>Daffodils</span><span>Dracaena</span><span>Dumb Cane</span><span>Elephant Ear</span>
+            <span>English Ivy</span><span>Hyacinth</span><span>Iron Cross Begonia</span><span>Jade Plant</span>
+            <span>Kalanchoe</span><span>Lilium</span><span>Lily of the Valley</span><span>Money Tree</span>
+            <span>Monstera Deliciosa</span><span>Orchid</span><span>Parlor Palm</span><span>Peace Lily</span>
+            <span>Poinsettia</span><span>Polka Dot Plant</span><span>Ponytail Palm</span><span>Pothos</span>
+            <span>Prayer Plant</span><span>Rattlesnake Plant</span><span>Rubber Plant</span><span>Sago Palm</span>
+            <span>Schefflera</span><span>Snake Plant</span><span>Tradescantia</span><span>Tulip</span>
+            <span>Venus Flytrap</span><span>Yucca</span><span>ZZ Plant</span>
+          </div>
+        </details>
 
         <div class="dataset-extra">
           <div class="dataset-extra-block">
-            <h4>Sample of the 47 species</h4>
-            <p>Aloe Vera · Anthurium · Areca Palm · Bird of Paradise · Boston Fern · Calathea ·
-            Christmas Cactus · Dracaena · Dumb Cane · Elephant Ear · English Ivy · Fiddle Leaf Fig ·
-            Jade Plant · Kalanchoe · Monstera · Money Tree · Orchid · Parlor Palm · Peace Lily ·
-            Poinsettia · Pothos · Prayer Plant · Rubber Plant · Sago Palm · Snake Plant · Tulip ·
-            Venus Flytrap · ZZ Plant <em>… and 19 more.</em></p>
+            <h4>Imbalance handling</h4>
+            <p><strong>Class-weighted cross-entropy</strong> — weight inversely proportional to class frequency.<br>
+            <strong>Augmentation</strong>: RandomResizedCrop · HorizontalFlip · Rotation ±15° · ColorJitter 0.1.<br>
+            <strong>Deterministic splits</strong>: <code>random_state=42</code> · CSV manifests in <code>data/processed/</code>.</p>
           </div>
           <div class="dataset-extra-block">
             <h4>Care knowledge base (47 species curated)</h4>
-            <p>47 care profiles · 94 toxicity records · sourced from ASPCA + RHS + Missouri Botanical Garden</p>
+            <p>47 care profiles · 94 toxicity records · sources: <strong>ASPCA</strong> + <strong>RHS</strong> + <strong>Missouri Bot. Garden</strong></p>
             <div class="tox-row">
               <span class="tox-pill safe"><strong>34</strong> pet-safe</span>
               <span class="tox-pill mild"><strong>7</strong> mildly toxic</span>
@@ -225,13 +254,16 @@
         </div>
 
         <aside class="notes">
-          Forty-seven classes, fifteen thousand images, mildly imbalanced — Yucca only has 66 images,
-          Anthurium has 454. We handle that with class-weighted loss and augmentation. Splits are
-          deterministic — same seed gives the same partition. Manifests live in CSV files so anyone
-          can reproduce.
-          The 47 classes cover the most common indoor plants. Care knowledge base curated by hand
-          from ASPCA toxicity database (US vet standard), RHS plant finder, and Missouri Botanical Garden.
-          Pet safety breakdown: 34 safe, 7 mild, 53 toxic records across cats and dogs (94 total).
+          Forty-seven classes, 14,774 images, mildly imbalanced — Yucca has only 66 images while
+          Monstera Deliciosa has 547. Mean is 314 images per class, median 318.
+          Train/val/test: 10,341 / 2,216 / 2,217 — stratified, seed 42, CSV manifests committed.
+          We handle imbalance with class-weighted cross-entropy (weights inversely proportional to
+          class frequency) and standard augmentation: random resized crop, horizontal flip,
+          rotation ±15°, color jitter 0.1.
+          All 47 species are listed in the expandable section — these are the most common indoor
+          plants worldwide. Care knowledge base curated by hand from ASPCA toxicity database
+          (US vet standard), RHS plant finder, and Missouri Botanical Garden. Pet safety breakdown:
+          34 safe, 7 mild, 53 toxic records across cats and dogs (94 total).
         </aside>
       </section>
 
